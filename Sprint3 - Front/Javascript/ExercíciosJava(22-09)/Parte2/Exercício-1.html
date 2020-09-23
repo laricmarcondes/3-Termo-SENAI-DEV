@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title> Aula de JavaScript</title>
+</head>
+
+<body>
+    <p>Clique para exibir.</p>
+    <button onclick="myFunction()">Clique aqui</button>
+    <p id="demo"></p>
+    <script>
+        function myFunction() {
+            var x;
+            var valor = prompt("Digite um número");
+            x = "O número informado foi " + valor;
+            document.getElementById("demo").innerHTML = x;
+        }
+    </script>
+</body>
+
+</html>

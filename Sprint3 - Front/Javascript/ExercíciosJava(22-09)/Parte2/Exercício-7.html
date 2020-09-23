@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title> Aula de JavaScript</title>
+</head>
+
+<body>
+    <p>Clique para exibir.</p>
+    <button onclick="myFunction()">Clique aqui</button>
+    <p id="demo"></p>
+    <script>
+        function myFunction() {
+            var x;
+            var valor = prompt("Digite a temperatura em graus Celcius que deseja converter para Farenheit");
+            valor = (valor * 9/5) + 32;
+            x = valor + " ° Farenheit";
+            document.getElementById("demo").innerHTML = x;
+        }
+    </script>
+</body>
+
+</html>

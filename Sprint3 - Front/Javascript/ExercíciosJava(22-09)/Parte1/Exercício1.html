@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title> Aula de JavaScript</title>
+</head>
+
+<body>
+    <p>Clique para exibir.</p>
+    <button onclick="myFunction()">Clique aqui</button>
+    <p id="demo"></p>
+    <script>
+        function myFunction() {
+            var x;
+            var r = confirm("Se estiver chovendo clique em ok, se não, em cancelar");
+            if (r == true) {
+                x = "Você pressionou OK, então está chovendo e deve-se tirar a roupa do varal.";
+            }
+            else {
+                x = "Você pressionou Cancelar, então não está chovendo e não deve-se tirar a roupa do varal.";
+            }
+            document.getElementById("demo").innerHTML = x;
+        }
+    </script>
+</body>
+
+</html>

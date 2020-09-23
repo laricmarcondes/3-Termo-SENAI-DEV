@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title> Aula de Java</title>
+</head>
+
+<body>
+    <p>Clique para exibir.</p>
+    <button onclick="myFunction()">Clique aqui</button>
+    <p id="demo1"></p>
+    <p id="demo2"></p>
+    <p id="demo3"></p>
+    <script>
+        function myFunction() {
+            var x;
+
+            var idade = prompt("Digite sua idade:");
+            if (idade != null) {
+                x = "Idade: " + idade + " anos.";
+                document.getElementById("demo1").innerHTML = x;
+            }
+
+            var altura = prompt("Digite sua altura:");
+            if (altura != null) {
+                x = "altura: " + altura + " altura.";
+                document.getElementById("demo2").innerHTML = x;
+            }
+
+            if (idade >= 16 && altura > 1.50)
+            {
+                document.getElementById("demo3").innerHTML = "Você pode entrar na montanha russa.";
+            }
+            else
+            {
+                document.getElementById("demo3").innerHTML = "Você NÃO pode entrar na montanha russa.";
+            }
+        }
+    </script>
+</body>
+</html>
+</html>
