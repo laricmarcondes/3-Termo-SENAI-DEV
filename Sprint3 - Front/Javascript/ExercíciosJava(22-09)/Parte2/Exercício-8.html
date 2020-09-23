@@ -11,14 +11,15 @@
     <button onclick="myFunction()">Clique aqui</button>
     <p id="demo"></p>
     <script>
-        function myFunction() {
+        function myFunction() 
+        {
             var x;
-            var gas = prompt("Digite o valor da gasolina.");
-            var alc = prompt("Digite o valor do álcool.");
+            var gas = parseInt(prompt("Digite o valor da gasolina."));
+            var alc = parseInt(prompt("Digite o valor do álcool."));
             if (alc <= (gas * 0.7)) {
-                x = "Álcool é mais vantajoso";
+                x = "Álcool é mais vantajoso.";
             } else {
-                x = "Gasolina é mais vantajoso";
+                x = "Gasolina é mais vantajoso.";
             }
             document.getElementById("demo").innerHTML = x;
         }

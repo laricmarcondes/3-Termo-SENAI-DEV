@@ -14,10 +14,10 @@
         function myFunction() {
             var x;
             var valor, n1, n2, n3, n4;
-            n1 = prompt("Digite a 1ª nota");
-            n2 = prompt("Digite a 2ª nota");
-            n3 = prompt("Digite a 3ª nota");
-            n4 = prompt("Digite a 4ª nota");
+            n1 = parseInt(prompt("Digite a 1ª nota"));
+            n2 = parseInt(prompt("Digite a 2ª nota"));
+            n3 = parseInt(prompt("Digite a 3ª nota"));
+            n4 = parseInt(prompt("Digite a 4ª nota"));
             valor = (n1 + n2 + n3 + n4) / 4;
             x = "A média é " + valor;
             document.getElementById("demo").innerHTML = x;
