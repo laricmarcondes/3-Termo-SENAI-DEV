@@ -1,64 +1,207 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Entendo o DOM (Document Object Model)</title>
+    <title>Crud JS</title>
+    <script>
+        var Livros = [];
+        var Livro = {
+            nome: "",
+            genero: "",
+            autor: "",
+            editora: "",
+            dataLancamento: "",
+            QtdPaginas: 0,
+            preco: 0,
+            descricao: "",
+            Idioma: "",
+            RankMaisVendidos: "",
+        }
+
+        var ids = ['nome', 'genero', 'autor', 'editora', 'dataLancamento',
+            'QtdPaginas', 'preco', 'descricao', 'Idioma', 'RankMaisVendidos'
+        ];
+
+        function AddLivro() {
+            for (let index = 0; index <= 9; index++) {
+                Livro[Object.keys(Livro)[index]] = document.getElementById(ids[index]).value;
+            }
+            Livros.push(Livro);
+            console.log(Livros);
+
+            var tabela = document.getElementById("tabela")
+            var numeroLinhas = tabela.rows.length;
+            var linha = tabela.insertRow(numeroLinhas);
+
+            for (let index = 0; index <= 11; index++) {
+                let celula1 = linha.insertCell(index);
+                if (index == 10) {
+                    celula1.innerHTML = "<button onclick='Remove(this)'>Remover</button>";
+                } else if (index == 11) {
+                    celula1.innerHTML = "<button onclick='Edita()'>Editar</button>";
+                } else {
+                    celula1.innerHTML = "<tr><td><input type='text' disabled=true value=" + Livro[Object.keys(Livro)[index]] + "></td></tr>";
+                }
+            }
+
+        }
+
+        function Remove(linha) {
+            var i = linha.parentNode.parentNode.rowIndex;
+            document.getElementById('tabela').deleteRow(i);
+        }
+    </script>
 </head>
 
 <body>
-    <div class="container">
-        <h1><time id="timer">00:00:00</time></h1>
-        <button onclick="Start()" id="Start">Start</button>
-        <button onclick="Stop()" id="Stop">Stop</button>
-        <button onclick="Reset()" id="Reset">Reset</button>
+    <h2>Cadastrar Livro</h2>
+    <div id="container">
+        <div id="cont">
+
+            <div>
+
+                <label for="nome">Nome do Livro:</label><br>
+                <input type="text" id="nome"><br>
+
+                <label for="genero">Genêro Livro:</label><br>
+                <input type="text" id="genero"><br>
+
+                <label for="autor">Autor do Livro:</label><br>
+                <input type="text" id="autor"><br>
+
+                <label for="editora">Editora do Livro:</label><br>
+                <input type="text" id="editora"><br>
+
+                <label for="dataLancamento">Data de lançamento do livro:</label><br>
+                <input type="date" id="dataLancamento"><br>
+
+            </div>
+            <div>
+
+                <label for="QtdPaginas">Quantidade de páginas:</label><br>
+                <input type="text" id="QtdPaginas"><br>
+
+                <label for="preco">Preço do livro:</label><br>
+                <input type="text" id="preco"><br>
+
+                <label for="descricao">Descrição:</label><br>
+                <input type="text" id="descricao"><br>
+
+                <label for="Idioma">Idioma do livro:</label><br>
+                <input type="text" id="Idioma"><br>
+
+                <label for="RankMaisVendidos">Posição mais vendidos:</label><br>
+                <input type="text" id="RankMaisVendidos"><br>
+            </div>
+        </div>
+        <div>
+            <button onclick="AddLivro()"><b>Enviar</b></button>
+        </div>
     </div>
+    <table id="tabela">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Gênero</th>
+                <th>Autor</th>
+                <th>Editora</th>
+                <th>Lancamento</th>
+                <th>Páginas</th>
+                <th>Preço</th>
+                <th>Descrição</th>
+                <th>Idioma</th>
+                <th>RankMaisVendidos</th>
+                <th>Remover</th>
+                <th>Editar</th>
+            </tr>
+        </thead>
+    </table>
 </body>
-
-<script>
-    type = "text/java"
-    var totalSeconds = 0;
-    var timerVar;
-    var running = false;
-
-    function countTimer() {
-        ++totalSeconds;
-        var hour = Math.floor(totalSeconds / 3600);
-        var minute = Math.floor((totalSeconds - hour * 3600) / 60);
-        var seconds = totalSeconds - (hour * 3600 + minute * 60);
-
-        if (hour < 10) { hour = "0" + hour; }
-        if (minute < 10) { minute = "0" + minute; }
-        if (seconds < 10) { seconds = "0" + seconds; }
-
-        var x = hour + ":" + minute + ":" + seconds;
-        document.getElementById("timer").innerHTML = x;
+<style>
+    * {
+        box-sizing: border-box;
+    }
+    
+    html,
+    body {
+        margin: 0;
+        padding: 0;
     }
 
-    function Start() {
-        if (!running) {
-            running = true;
-            countTimer();
-            timerVar = setInterval(countTimer, 1000);
-        }
+    h2{
+        text-align: center;
+        margin-top: 50px;
+        margin-bottom: 10;
+    }
+    
+    body {
+        font-family: sans-serif;
+        height: 100vh;
+        background-size: cover;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    #container {
+        height: 400px;
+        width: 500px;
+        display: flex;
+        text-align: center;
+        margin: 0 auto;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    #cont {
+        display: flex;
+        padding: 10px;
+        margin: 10px;
+    }
+    
+    #cont>div>input {
+        margin: 10px;
+        padding: 10px;
+        width: 200px;
+        height: 15px;
+        border-radius: 20px;
+        font-size: 14px;
+        outline: 0;
+        font-weight: 700;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    }
+    
+    #tabela table {
+        display: flex;
+        text-align: center;
+        align-items: center;
+        border-collapse: collapse;
+        border: 0;
+    }
+    
+    #tabela th {
+        width: 100px;
+        padding: 5px;
+        background-color: gray;
+    }
+    
+    #tabela td {
+        width: 100px;
+        text-align: center;
+    }
+    
+    #tabela input {
+        border: none;
+        width: 100px;
+        text-align: center;
     }
 
-    function Stop() {
-        running = false;
-        clearInterval(timerVar);
+    button{
+        font-size: 15px;
+        width: 75px;
     }
-
-    function Reset() {
-        running = false;
-        clearInterval(timerVar);
-        hour = 0;
-        minute = 0;
-        seconds = 0;
-        totalSeconds = 0;
-        document.getElementById('timer').innerHTML = '00:00:00';
-    }
-</script>
+</style>
 
 </html>
