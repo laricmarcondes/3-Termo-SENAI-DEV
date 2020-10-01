@@ -1,13 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>XMLHttpRequest - Consumir api</title>
-</head>
-
-<script>
-    var pokemon = document.getElementById('pokemon');
+var pokemon = document.getElementById('pokemon');
 var botao = document.getElementById('btn');
 var ataques = document.getElementById('atacks');
 var imagem = document.getElementById('imagem');
@@ -68,60 +59,3 @@ function buscar() {
         }
     }
 }
-</script>
-
-<body>
-    <div id="run">
-        <label for="">Digite seu pokemon</label>
-        <input type="text" id="pokemon">
-        <button id="btn" onclick="buscar()">Click aqui</button>
-        <table>
-            <tr>
-                <td>Nome Pokemon</td>
-                <td>Tipo Pokemon</td>
-            </tr>
-            <tr>
-                <td id="nomePoke"></td>
-                <td id="tipoPoke"></td>
-            </tr>
-        </table>
-        <div id="info">
-
-        </div>
-        <h3>Ataques</h3>
-        <div id="atacks">
-        </div>
-        <h3>Imagem do pokemon</h3>
-        <div id="imagem">
-
-        </div>
-
-    </div>
-</body>
-<src=".js"></src>
-
-<style>
-    html,
-    body {
-        margin: 0;
-        padding: 0;
-    }
-    
-    #run {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        position: relative;
-        top: 10em;
-        margin: 50px auto;
-        height: 200px;
-        width: 400px;
-        text-align: center;
-    }
-    
-    #imagem {
-        display: flex;
-    }
-</style>
-</html>

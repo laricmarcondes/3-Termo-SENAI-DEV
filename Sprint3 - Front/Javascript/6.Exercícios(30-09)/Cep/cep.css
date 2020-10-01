@@ -1,0 +1,28 @@
+#container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    height: 30%;
+    align-items: center;
+    text-align: center;
+}
+
+#info {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+h1 {
+    background: var(--color-primary);
+    color: var(--color-text);
+    margin: 0;
+    margin-bottom: 2rem;
+    padding: 5rem;
+    text-align: center;
+}
+
+button {
+    margin-top: 20px;
+}

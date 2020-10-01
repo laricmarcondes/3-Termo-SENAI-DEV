@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="styles.css" />
+    <link rel="stylesheet" type="text/css" href="estilos.css" />
     <title>Manipulando o Estilo do Site</title>
 </head>
 
@@ -14,10 +14,10 @@
     <h2>Altere a frase acima clicando nos botões</h2>
 
     <p>Muda cor da fonte</p>
-    <input type="color" onchange="mudaCor(this)"/>
+    <input type="color" onchange="mudaCor(this)" />
 
     <p>Muda tamanho da fonte</p>
-    <input type="range" min="10" max="30" onchange="mudaTamanhoFonte(this)"/>
+    <input type="range" min="10" max="30" onchange="mudaTamanhoFonte(this)" />
 
     <p>Muda cor de fundo</p>
     <input type="color" onchange="mudaBackground(this)" />
@@ -38,7 +38,7 @@
     <input type="checkbox" id="check" value="Coloca borda" onclick="colocaBorder()" />
 
     <p>Muda cor da borda</p>
-    <input type="color" onchange="corBorder(this)"/>
+    <input type="color" onchange="corBorder(this)" />
 
     <br><br>
 
@@ -51,8 +51,8 @@
     }
 
     function mudaTamanhoFonte(tamanho) {
-        
-        document.getElementById("manipula").style.fontSize = tamanho.value+"px";
+
+        document.getElementById("manipula").style.fontSize = tamanho.value + "px";
     }
 
     function mudaBackground(corBackGround) {
@@ -60,16 +60,16 @@
     }
 
     function mudaItalico() {
-            document.getElementById("manipula").style.fontStyle = document.getElementById("checkFonte").checked == true? "italic" : "normal";
-    }  
+        document.getElementById("manipula").style.fontStyle = document.getElementById("checkFonte").checked == true ? "italic" : "normal";
+    }
 
     function mudaFamilia() {
         document.getElementById("manipula").style.fontFamily = document.getElementById("fonte").value;
     }
 
     function colocaBorder() {
-        
-        document.getElementById("manipula").style.border = document.getElementById("check").checked == true? "2px solid #000000" : "0px";
+
+        document.getElementById("manipula").style.border = document.getElementById("check").checked == true ? "2px solid #000000" : "0px";
     }
 
     function corBorder(cor) {
@@ -79,14 +79,12 @@
     function escondeDiv() {
         var el = document.getElementById("manipula");
 
-      if ( el.style.display != 'none' ) {
-      el.style.display = 'none';
-      }
-      else if(el.style.display != 'block'){
-      el.style.display = 'block';
-      }        
+        if (el.style.display != 'none') {
+            el.style.display = 'none';
+        } else if (el.style.display != 'block') {
+            el.style.display = 'block';
+        }
     }
-    
 </script>
 
 </html>
