@@ -17,10 +17,13 @@
     <input type="color" onchange="mudaCor(this)"/>
 
     <p>Muda tamanho da fonte</p>
-    <input type="range" title="" min="10" max="30" onchange="mudaTamanhoFonte(this)" />
+    <input type="range" min="10" max="30" onchange="mudaTamanhoFonte(this)"/>
 
     <p>Muda cor de fundo</p>
     <input type="color" onchange="mudaBackground(this)" />
+
+    <p>Coloca em itálico</p>
+    <input type="checkbox" id="checkFonte" onclick="mudaItalico()" />
 
     <p>Muda fonte da letra</p>
     <select id="fonte" onchange="mudaFamilia()">
@@ -56,8 +59,21 @@
         document.getElementById("manipula").style.backgroundColor = corBackGround.value;
     }
 
+    function mudaItalico() {
+            document.getElementById("manipula").style.fontStyle = document.getElementById("checkFonte").checked == true? "italic" : "normal";
+    }  
+
     function mudaFamilia() {
         document.getElementById("manipula").style.fontFamily = document.getElementById("fonte").value;
+    }
+
+    function colocaBorder() {
+        
+        document.getElementById("manipula").style.border = document.getElementById("check").checked == true? "2px solid #000000" : "0px";
+    }
+
+    function corBorder(cor) {
+        document.getElementById("manipula").style.borderColor = cor.value;
     }
 
     function escondeDiv() {
@@ -69,15 +85,6 @@
       else if(el.style.display != 'block'){
       el.style.display = 'block';
       }        
-    }    
-
-    function colocaBorder() {
-        
-        document.getElementById("manipula").style.border = document.getElementById("check").checked == true? "2px solid #000000" : "0px";
-    }
-
-    function corBorder(cor) {
-        document.getElementById("manipula").style.borderColor = cor.value;
     }
     
 </script>
