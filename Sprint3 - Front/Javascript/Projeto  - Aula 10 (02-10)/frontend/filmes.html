@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Filmes</title>
-    <link href="filmes2.css" rel="stylesheet" type="text/css">
+    <link href="filmes.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
@@ -32,19 +32,19 @@
 
             <div>
                 <h2>Lista de Filmes</h2>
-                <table>
+                <table id="Filmes">
                     <thead>
                         <tr>
-                            <th>Título do Filme</th>
-                            <th>Gênero</th>
+                            <th id="titulo">Título do Filme</th>
+                            <th id="genero">Gênero</th>
                         </tr>
                         <tr>
-                            <th>Título do Filme</th>
-                            <th>Gênero</th>
+                            <th><br></th>
+                            <th><br></th>
                         </tr>
                         <tr>
-                            <th>Título do Filme</th>
-                            <th>Gênero</th>
+                            <th><br></th>
+                            <th><br></th>
                         </tr>
                     </thead>
                     <tbody id="body-table">
@@ -53,7 +53,7 @@
                 </table>
             </div>
         </div>
-        <button onclick="filmes()">Listar Filmes</button>
+        <button id="btn" onclick="listarFilmes()">Listar Filmes</button>
     </main>
 
     <footer>
@@ -76,6 +76,9 @@
         </div>
         </div>
     </footer>
+
+    <script src="filmes.js" type="text/javascript"></script>
+
 </body>
 
 </html>

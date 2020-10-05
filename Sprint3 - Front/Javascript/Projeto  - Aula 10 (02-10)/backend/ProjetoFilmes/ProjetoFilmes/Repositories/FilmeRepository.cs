@@ -74,7 +74,20 @@ namespace ProjetoFilmes.Repositories
         /// <returns>Retorna uma lista de filmes</returns>
         public List<Filmes> Listar()
         {
-            return ctx.Filmes.ToList();
+            return ctx.Filmes
+                .Select(x => new Filmes()
+                {
+                    IdFilme = x.IdFilme,
+                    IdGenero = x.IdGenero,
+                    Titulo = x.Titulo,
+                    IdGeneroNavigation = new Generos()
+                    {
+                        IdGenero = x.IdGeneroNavigation.IdGenero,
+                        Nome = x.IdGeneroNavigation.Nome
+                    }
+
+                }).ToList();
+
         }
     }
 }

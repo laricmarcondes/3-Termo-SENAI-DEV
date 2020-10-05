@@ -46,7 +46,7 @@ namespace ProjetoFilmes.Controllers
         /// </summary>
         /// <param name="id">ID do gênero que será buscado</param>
         /// <returns>Retorna um gênero buscado</returns>
-        [Authorize(Roles = "Administrador")]
+        //[Authorize(Roles = "Administrador")]
         [HttpGet("{id}")]
         public IActionResult ListarPorId(int id)
         {
