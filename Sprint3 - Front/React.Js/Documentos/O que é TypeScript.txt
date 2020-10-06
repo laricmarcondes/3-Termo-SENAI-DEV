@@ -1,0 +1,21 @@
+
+TypeScript 
+
+Não é uma linguagem de programação, é um superset, um conjunto de ferramentas construida
+em cima do JS que adiciona tipagem estática no Js.
+Tipagem estática é para definir o tipo que a variável tem, defifnir parâmetros de funções,
+retorno de funções. Basicamente adiciona essa parte de tipagem.
+Não é nescessário adicionar tipagem em todas as variáveis. O typeScript fica executando
+o código e com a inferência de tipos dentro do typeScript ele consegue determinar
+automaticamente o tipo de algumas variáveis.
+
+Desvantagem: perde um pouco de pridutividade no começo, até aprender.
+
+Vantagem: tem possibilidade de descobrir erros durante o desenvolvimento e incrementar 
+a inteligência (IntelliSense) da IDE que estamos utilizando.
+
+TypeScript faz a verificação de erros durante a compilação e permite gerar Javascript 
+para diferentes versões do EcmaScript sem que você precise necessariamente se preocupar 
+com isso.
+
+O Playground é um editor que verifica erros de sintaxe e compila o código para JavaScript.
