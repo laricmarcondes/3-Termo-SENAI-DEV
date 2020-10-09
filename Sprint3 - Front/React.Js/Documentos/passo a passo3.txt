@@ -1,0 +1,62 @@
+>>Propriedade
+Exemplo com Header - mudar o título
+Página Home
+<Header title=”Conheça nossa coletânea”/>
+
+Página Login
+<Header title=”Faça seu login e acesse a coletânea”/>
+
+O componente não sabe se pode receber esta propriedade (title, titulo, texto…). 
+Propriedade obrigatória, string, booleana…
+Precisa-se adicionar tipagem, informar se é obrigatória ou não…
+
+No componente Header, declarar a tipagem das propriedades, forma mais fácil:
+
+Transformar o Header em uma constante, arrow function. Informar ao componente que ele é uma string e que é obrigatório (interface - definir as tipagens de um objeto). Fazer o Header usar esta propriedade criada:
+
+interface HeaderProps{ 
+	descritpion: string; 
+}
+const Header: React.FC<HeaderProps> =(props)=>{		
+return (
+<h1>Header</h1>
+<p>{props.description}</p>
+);
+	}
+export default Header;
+
+
+Um dos princípios fundamentais do TypeScript é o tipo de verificação focada na "forma" dos dados. Este tipo de checagem é chamado de "duck typing" ou "structural subtyping". No TypeScript, interfaces são usadas para ocupar o papel de "dar forma" aos dados e são uma maneira poderosa de definir contratos dentro do seu código, bem como contratos com código fora do seu projeto.
+
+>>Criando um componente input 
+Na pasta components criar pasta inputs, criar arquivos index.tsx e style.css
+
+import React, {InputHTMLAttributes} from ‘react’; //são todos os atributos que um input pode receber
+import ‘./style.css’ // importar css
+
+interface InputProps extends InputHTMLAttributes<HMTLInputElement>{ 	//receber todos os atributos que um input HTML  receberia por padrão
+	label: string;
+	name: string;
+}
+const Input: React.FC<InputProps> =({label, name, ...rest})=>{		//desestruturação de props {...}
+		return (		
+<label htmlFor={name}>{label}</label>
+<input type=’text’ id={name}{...rest}/>
+);
+	}
+	export default Input;
+
+Na página Login:
+	
+function Login(){
+return (
+<div>
+<Header title=””Faça seu login e acesse a coletânea”/>
+<h1>Login</h1>
+<form>
+<Input name=”email” label=”E-mail”/>
+<Input type=”password” name=”senha” label=”Senha”/>
+</div>
+)
+	}
+	export default Login;
