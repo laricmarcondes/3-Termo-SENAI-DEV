@@ -12,16 +12,19 @@ function Login() {
             <Header description="Faça o login para acessar a coletânea" />
             <h1>Login</h1>
             <div className="centro">
-                <div className="login">
-                    <main>
+
+                <main>
+                    <div className="login">
                         <Input type="email" name="email" label="Email" />
-                        <br/>
+                        <br />
                         <Input type="password" name="senha" label="Senha" />
+                        
                         <div className="botao">
                             <button>Enviar</button>
                         </div>
-                    </main>
-                </div>
+                    </div>
+                </main>
+
             </div>
             <Footer />
         </div>

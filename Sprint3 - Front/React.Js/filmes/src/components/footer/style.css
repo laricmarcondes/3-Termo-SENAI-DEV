@@ -4,7 +4,7 @@
     height: 17vh;
     justify-content: space-between;
     color: white;
-    font-size: 12px;
+    font-size: 16px;
 }
 
 hr{
@@ -18,12 +18,12 @@ hr{
 .footer-part{
     width: 50vw;
     height:13em;
-    width: 1024px;
+    width: 900px;
     display: flex;
     align-items: center;
     justify-content: space-around;
     align-self: center;
-    padding-left: 7em;
+    padding-left: 13em;
 }
 
 footer{
@@ -31,11 +31,6 @@ footer{
     display: flex;
     align-items: center;
     justify-content: center;
-    position: absolute; 
-    bottom: 0px; 
     width: 100%;
-    margin: auto auto;
-    padding: 5px 0px;
-    left: 0px;
     color: white;
 }
