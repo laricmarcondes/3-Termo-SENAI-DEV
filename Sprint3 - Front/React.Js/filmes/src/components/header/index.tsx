@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 
 interface HeaderProps {
     description: string;
+    text?: string;
 }
 
 const Header: React.FC<HeaderProps> = (props) => {
@@ -22,6 +23,7 @@ const Header: React.FC<HeaderProps> = (props) => {
                         </ul>
                     </nav>
                     <h3>{props.description}</h3>
+                    {props.text && <p>{props.text}</p>}
                 </div>
             </div>
         </div>

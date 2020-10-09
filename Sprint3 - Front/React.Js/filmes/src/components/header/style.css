@@ -1,18 +1,22 @@
 .header{
     background-color: #9BD2DE;
-    padding-top: 40px;
-    padding-bottom: 40px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+
+.align{
+    width: 1024px;
+    margin: auto;
+}
+
+.align h3{
+    padding-top: 25px;
 }
 
 nav{
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
-
-.align{
-    width: 1024px;
-    margin: auto;
 }
 
 .menu{
@@ -32,8 +36,4 @@ nav{
     color: #8c417c;
     border-bottom: 2px solid #8c417c;
     padding-bottom: 5px;
-}
-
-.align h3{
-    padding-top: 25px;
 }

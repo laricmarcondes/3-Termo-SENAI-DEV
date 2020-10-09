@@ -4,6 +4,14 @@
     box-sizing: border-box;
 }
 
+h1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1em;
+    font-size: x-large;
+}
+
 body{
     font-family: 'Roboto', 'sans-serif';
 }
@@ -12,12 +20,4 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-h1{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 1em;
-    font-size: x-large;
 }

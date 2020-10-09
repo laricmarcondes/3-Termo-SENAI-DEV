@@ -1,3 +1,23 @@
+.inicio .header{
+    padding-top: 25px;
+    padding-bottom: 6px;
+}
+
+.titulo > h1{
+    font-size: xx-large;
+    padding-top: 0.9em;
+    padding-bottom: 0.9em;
+}
+
+h2{
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+}
+
+.main{
+    padding-bottom: 2em;
+}
+
 .conteudo {
     justify-content: space-between;
     align-items: center;
@@ -7,25 +27,11 @@
     list-style: none;
     display: flex;
     justify-content: space-between;
-    padding-top: 2em;
-}
-
-.home{
-    padding-top: 0.9em;
-    padding-bottom: 2em;
-}
-
-h1{
-    font-size: xx-large;
+    padding-top: 1.6em;
 }
 
 .texto1 > h2{
     padding-top: 0em;
-    padding-bottom: 0.5em;
-}
-
-h2{
-    padding-top: 0.5em;
     padding-bottom: 0.5em;
 }
 

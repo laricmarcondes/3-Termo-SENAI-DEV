@@ -1,14 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Header from '../../components/header/index';
 import Footer from '../../components/footer/index';
 import '../../assets/styles/global.css';
 import '../../pages/cadastro/style.css';
 import Input from '../../components/input/index';
+import Button from '../../components/button/index';
 
 function Cadastro() {
+
+    const [cont, setCont] = useState(0);
+
     return (
         <div>
-            <Header description="Faça o cadastro para o acesso" />
+            <div className="cadastrar">
+                <Header description="Faça o cadastro para o acesso" text="Pronto para cadastrar?" />
+            </div>
             <h1>Cadastro</h1>
             <div className="centro">
 
@@ -21,10 +27,8 @@ function Cadastro() {
                         <Input type="text" name="permissao" label="Permissão" />
                         <br />
                         <Input type="password" name="senha" label="Senha" />
-
-                        <div className="botao">
-                            <button>Enviar</button>
-                        </div>
+                        <Button onClick={() => setCont(cont + 1)} value="Cadastrar" />
+                        <p>Você clicou {cont}</p>
                     </div>
                 </main>
             </div>
