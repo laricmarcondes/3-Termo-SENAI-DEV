@@ -1,0 +1,5 @@
+https://medium.com/@lucasribeiro61374/como-usar-react-router-71145a2b8ee0#:~:text=O%20useHistory%20%C3%A9%20a%20um,a%20rota%20que%20voc%C3%AA%20quer.
+
+https://reactrouter.com/web/api/Hooks
+
+https://tableless.com.br/guia-f%C3%A1cil-sobre-usar-localstorage-com-javascript/

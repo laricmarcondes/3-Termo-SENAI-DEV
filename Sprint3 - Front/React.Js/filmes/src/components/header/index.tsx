@@ -20,6 +20,9 @@ const Header: React.FC<HeaderProps> = (props) => {
                             <li><Link className="link" to="/">Home</Link></li>
                             <li><Link className="link" to="/login">Login</Link></li>
                             <li><Link className="link" to="/cadastro">Cadastro</Link></li>
+                            <li><Link className="link" to="/perfil">Perfil</Link></li>
+                            <li><Link className="link" to="/filmes">Filmes</Link></li>
+                            <li><Link className="link" to="/genero">Genero</Link></li>
                         </ul>
                     </nav>
                     <h3>{props.description}</h3>

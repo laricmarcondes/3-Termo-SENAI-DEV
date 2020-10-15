@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Header from '../../components/header/index';
 import Footer from '../../components/footer/index';
 import '../../assets/styles/global.css';
@@ -6,18 +6,12 @@ import '../../pages/cadastro/style.css';
 import Input from '../../components/input/index';
 import Button from '../../components/button/index';
 
-function Cadastro() {
-
-    // const [cont, setCont] = useState(0);
-
+function Perfil() {
     return (
         <div>
-            <div className="cadastrar">
-                <Header description="Faça o cadastro para o acesso" text="Pronto para cadastrar?" />
-            </div>
-            <h1>Cadastro</h1>
+                <Header description="Edite seu perfil, caso nescessário"/>
+            <h1>Perfil</h1>
             <div className="centro">
-
                 <main>
                     <div className="cadastro">
                         <Input type="text" name="nome" label="Nome" />
@@ -27,13 +21,8 @@ function Cadastro() {
                         <Input type="text" name="permissao" label="Permissão" />
                         <br />
                         <Input type="password" name="senha" label="Senha" />
-                        <div className="btn">
-                            <Button value="Cadastrar" />
-                        </div>
-                        
-                        {/* <Button onClick={() => setCont(cont + 1)} value="Cadastrar" /> <br />
-                        <p>Quantidade de cliques: {cont}</p> */}
-                        
+                        <Button value="Editar" />
+                        <Button value="Salvar" />
                     </div>
                 </main>
             </div>
@@ -42,4 +31,4 @@ function Cadastro() {
     );
 }
 
-export default Cadastro;
+export default Perfil;
