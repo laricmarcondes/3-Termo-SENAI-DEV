@@ -1,0 +1,14 @@
+/* .btn{
+    padding-top: 2em;
+    padding-left: 8em;
+} */
+
+.button{
+    width: 140px;
+    height: 47px;
+    background-color: #F6511D;
+    border: none;
+    border-radius: 3px;
+    color: white;
+    padding-top: 17px;
+}

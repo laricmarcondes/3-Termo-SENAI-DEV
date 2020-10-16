@@ -1,0 +1,3 @@
+https://www.devmedia.com.br/react-hoje-e-amanha-o-que-muda-com-os-hooks/40314
+
+https://medium.com/@devjpnobrega/primeiros-passos-com-react-hooks-useeffect-c3d2f61eb089

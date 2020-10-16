@@ -1,0 +1,42 @@
+.imgGeneros{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tituloGenero h1{
+    padding-bottom: 0.5em;
+}
+
+.tituloLista h2{
+    font-size: 22px;
+    padding: 0;
+}
+
+table .Generos{
+    margin: 10px 0px;
+    padding-bottom: 4em;
+    padding-right:40em;
+}
+
+th{
+    padding-left: 25px;
+    padding-right: 25px;
+    font-size: 18px;
+}
+
+.tituloFinal{
+    font-size: 18px;
+    font-weight: bolder;
+}
+
+.final{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 2em;
+}
+
+.btnGeneros{
+    padding-top: 18px;
+}
