@@ -34,7 +34,7 @@ function Home() {
                                 <div className="texto2">
 
                                     <div>
-                                        <img src={cinema} alt="imagem de símbolodo cinema" width="100px" height="100px" />
+                                        <img src={cinema} alt="imagem de símbolodo cinema" width="80px" height="80px" />
                                     </div>
 
                                     <div>
@@ -50,7 +50,7 @@ function Home() {
                                 <div className="texto3">
 
                                     <div>
-                                        <img src={theater} alt="imagem de símbolodo teatro" width="100px" height="100px" />
+                                        <img src={theater} alt="imagem de símbolodo teatro" width="80px" height="80px" />
                                     </div>
 
                                     <div>

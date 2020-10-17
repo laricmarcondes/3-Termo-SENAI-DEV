@@ -4,13 +4,19 @@
     align-items: center;
 }
 
+.iconGeneros{
+    width: 80px;
+    height: 80px;
+}
+
 .tituloGenero h1{
     padding-bottom: 0.5em;
 }
 
 .tituloLista h2{
     font-size: 22px;
-    padding: 0;
+    padding-top: 10px;
+    padding-bottom: 5px;
 }
 
 table .Generos{
@@ -19,15 +25,21 @@ table .Generos{
     padding-right:40em;
 }
 
-th{
+/* th{
     padding-left: 25px;
     padding-right: 25px;
     font-size: 18px;
+} */
+
+td{
+    padding-left: 20px;
+    padding-right: 60px;
+    font-weight: bolder;
+    font-size: 18px;
 }
 
-.tituloFinal{
-    font-size: 18px;
-    font-weight: bolder;
+.icon{
+    width: 25px;
 }
 
 .final{
@@ -35,8 +47,9 @@ th{
     justify-content: space-between;
     align-items: center;
     padding-bottom: 2em;
+    font-weight: bolder;
 }
 
 .btnGeneros{
-    padding-top: 18px;
+    padding-top: 16px;
 }

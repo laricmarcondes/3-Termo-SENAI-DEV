@@ -5,8 +5,8 @@
 
 .titulo > h1{
     font-size: xx-large;
-    padding-top: 0.9em;
-    padding-bottom: 0.9em;
+    padding-top: 1em;
+    padding-bottom: 1em;
 }
 
 h2{
@@ -27,7 +27,7 @@ h2{
     list-style: none;
     display: flex;
     justify-content: space-between;
-    padding-top: 1.6em;
+    padding-top: 2em;
 }
 
 .texto1 > h2{

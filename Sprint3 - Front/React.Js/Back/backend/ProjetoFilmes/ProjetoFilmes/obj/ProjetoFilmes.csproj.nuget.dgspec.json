@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Laric\\Desktop\\apifilmes\\SENAI-ESTUDOS-Alunos\\backend\\01.filmes\\backend\\ProjetoFilmes\\ProjetoFilmes\\ProjetoFilmes.csproj": {}
+    "C:\\Users\\Laric\\OneDrive\\Documentos\\SENAI\\3ºTermo\\Sprint3 - Front\\React.Js\\Back\\backend\\ProjetoFilmes\\ProjetoFilmes\\ProjetoFilmes.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Laric\\Desktop\\apifilmes\\SENAI-ESTUDOS-Alunos\\backend\\01.filmes\\backend\\ProjetoFilmes\\ProjetoFilmes\\ProjetoFilmes.csproj": {
+    "C:\\Users\\Laric\\OneDrive\\Documentos\\SENAI\\3ºTermo\\Sprint3 - Front\\React.Js\\Back\\backend\\ProjetoFilmes\\ProjetoFilmes\\ProjetoFilmes.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Laric\\Desktop\\apifilmes\\SENAI-ESTUDOS-Alunos\\backend\\01.filmes\\backend\\ProjetoFilmes\\ProjetoFilmes\\ProjetoFilmes.csproj",
+        "projectUniqueName": "C:\\Users\\Laric\\OneDrive\\Documentos\\SENAI\\3ºTermo\\Sprint3 - Front\\React.Js\\Back\\backend\\ProjetoFilmes\\ProjetoFilmes\\ProjetoFilmes.csproj",
         "projectName": "ProjetoFilmes",
-        "projectPath": "C:\\Users\\Laric\\Desktop\\apifilmes\\SENAI-ESTUDOS-Alunos\\backend\\01.filmes\\backend\\ProjetoFilmes\\ProjetoFilmes\\ProjetoFilmes.csproj",
+        "projectPath": "C:\\Users\\Laric\\OneDrive\\Documentos\\SENAI\\3ºTermo\\Sprint3 - Front\\React.Js\\Back\\backend\\ProjetoFilmes\\ProjetoFilmes\\ProjetoFilmes.csproj",
         "packagesPath": "C:\\Users\\Laric\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Laric\\Desktop\\apifilmes\\SENAI-ESTUDOS-Alunos\\backend\\01.filmes\\backend\\ProjetoFilmes\\ProjetoFilmes\\obj\\",
+        "outputPath": "C:\\Users\\Laric\\OneDrive\\Documentos\\SENAI\\3ºTermo\\Sprint3 - Front\\React.Js\\Back\\backend\\ProjetoFilmes\\ProjetoFilmes\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\",

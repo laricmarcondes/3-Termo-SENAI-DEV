@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "NvmmE59UO6W4J2GMtyKNbeeD0xrVP8P6/ymUz3ZT1XGLMl6Vm7h0EvjIy9dBFKWG8iAyNTn729sIdfre7MNi4g==",
+  "dgSpecHash": "fHEsJTgy7xdJDhBQQTxme9qozr0dhyJhPsrn8LMAFO6BchwzuzJi6q7EhX1E9mVIGdJYiQ9tNyVv1zbvD7s/kQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Laric\\Desktop\\apifilmes\\SENAI-ESTUDOS-Alunos\\backend\\01.filmes\\backend\\ProjetoFilmes\\ProjetoFilmes\\ProjetoFilmes.csproj",
+  "projectFilePath": "C:\\Users\\Laric\\OneDrive\\Documentos\\SENAI\\3ºTermo\\Sprint3 - Front\\React.Js\\Back\\backend\\ProjetoFilmes\\ProjetoFilmes\\ProjetoFilmes.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Laric\\.nuget\\packages\\microsoft.aspnet.webapi.client\\5.2.6\\microsoft.aspnet.webapi.client.5.2.6.nupkg.sha512",
     "C:\\Users\\Laric\\.nuget\\packages\\microsoft.aspnetcore\\2.1.1\\microsoft.aspnetcore.2.1.1.nupkg.sha512",
