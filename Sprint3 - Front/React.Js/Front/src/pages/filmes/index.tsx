@@ -67,8 +67,9 @@ function Filmes() {
             .then(dados => {
                 setIdFilme(dados.idFilme);
                 setFilme(dados.titulo);
-                setIdGenero(dados.idGeneroNavigation);
-                setGenero(dados.id.nome);
+                setIdGenero(dados.idGenero);
+                setGenero(dados.nome);
+
             })
             .catch(err => console.error(err));
     }
@@ -79,7 +80,7 @@ function Filmes() {
             nome: genero
         };
 
-        const method = (idFilme === 0 ? 'POST' : 'PUT');
+        const method = (idFilme && idGenero === 0 ? 'POST' : 'PUT');
         const urlRequest = (idFilme === 0 ? 'http://localhost:5000/api/filmes' : 'http://localhost:5000/api/filmes/' + idFilme);
 
         fetch(urlRequest, {
@@ -135,11 +136,11 @@ function Filmes() {
                                     {
                                         filmes.map((item: any) => {
                                             return (
-                                                <tr key={item.idFilme}>
+                                                <tr key={item.idFilme} >
                                                     {/* <td>{item.idFilme}</td> */}
                                                     <td>{item.titulo}</td>
 
-                                                    <td>{item.nome}</td>
+                                                    <td>{item.idGenero}</td>
 
                                                     <td>
                                                         <img className="icon" src={imgRefresh} onClick={() => refresh(item.idFilme)} alt="" />
@@ -175,13 +176,24 @@ function Filmes() {
                             <div className="final">
 
                                 <Input name="filme" label="Cadastrar Filme" placeholder="Ex: Batman..." value={filme} onChange={e => setFilme(e.target.value)} />
-                                
-                                <Input name="genero" label="Gênero" placeholder="Ex: Ação..." value={genero} onChange={e => setGenero(e.target.value)} />
+
+                                {/* <Input name="genero" label="Gênero" placeholder="Ex: Ação..." value={genero} onChange={e => setGenero(e.target.value)} /> */}
+
+                                <div className="listaGenero">
+                                    <select name="genero" onChange={e => setGenero(e.target.value)} value={genero}>
+                                        <option value="0">Selecione um Gênero</option>
+                                        {
+                                            generos.map((item: any) => {
+                                                return <option value={item.idGenero}>{item.idGenero}</option>
+                                            })
+                                        }
+                                    </select>
+                                </div>
 
                                 <div className="btnFilmes">
                                     <Button value="Salvar" />
                                 </div>
-                                
+
                             </div>
                         </form>
                     </main>

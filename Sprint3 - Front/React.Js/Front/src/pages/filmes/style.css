@@ -49,6 +49,20 @@ td{
     font-weight: bolder;
 }
 
+select{
+    width: 340px;
+    height: 47px;
+    left: 650px;
+    border-radius: 3px;
+    border-width: 1px;
+    padding: 1.5em;
+    padding-top: 12px;
+}
+
+.listaGenero{
+    padding-top: 20px;
+}
+
 .btnFilmes{
-    padding-top: 16px;
+    padding-top: 20px;
 }
