@@ -22,15 +22,16 @@ function Perfil() {
                         <Input type="text" name="permissao" placeholder="Permissão" label="" />
                         <br />
                         <Input type="password" name="senha" placeholder="Senha" label="" />
+
                         <div className="btn1">
-                            <Button value="Editar" />
-                            <Button value="Salvar" />
-                        </div>
+                        <Button value="Editar" />
+                        <Button value="Salvar" />
+                    </div>
                     </div>
                 </main>
             </div>
             <Footer />
-        </div>
+        </div >
     );
 }
 

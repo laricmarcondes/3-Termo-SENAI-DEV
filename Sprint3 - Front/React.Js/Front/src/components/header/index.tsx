@@ -29,13 +29,14 @@ const Header: React.FC<HeaderProps> = (props) => {
                     <li><Link className="link" to="/cadastro">Cadastro</Link></li>
                 </ul>
             )
-        } else {
+        } else  {
             return (
                 <ul className="menu1">
                     <li><Link className="link" to="/">Home</Link></li>
                     <li><Link className="link" to="/perfil">Perfil</Link></li>
                     <li><Link className="link" to="/filmes">Filmes</Link></li>
                     <li><Link className="link" to="/genero">Gênero</Link></li>
+                    <li><Link className="link" to="/listaFilmes">Lista de Filmes</Link></li>
                     <li><Link to='' onClick={(event) => {
                         event.preventDefault();
                         logout();

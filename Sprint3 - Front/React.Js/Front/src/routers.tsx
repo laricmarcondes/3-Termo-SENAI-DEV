@@ -6,6 +6,7 @@ import Cadastro from './pages/cadastro/index';
 import Perfil from './pages/perfil/index';
 import Filmes from './pages/filmes/index';
 import Genero from './pages/genero/index';
+import ListaFilmes from './pages/listaFilmes/index';
 
 function Routers(){
     return(
@@ -16,6 +17,7 @@ function Routers(){
             <Route path="/perfil" component={Perfil}/>
             <Route path="/filmes" component={Filmes}/>
             <Route path="/genero" component={Genero}/>
+            <Route path="/listaFilmes" component={ListaFilmes}/>
         </BrowserRouter>
     )
 }
