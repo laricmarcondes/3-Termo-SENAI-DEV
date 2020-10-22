@@ -1,12 +1,12 @@
 import React from 'react';
 import {BrowserRouter, Route} from 'react-router-dom';
+import Home from './pages/home';
+
 
 function Routers(){
     return(
         <BrowserRouter>
-            {/* <Route path="/" exact component={Home} />
-            <Route path="/login"  component={Login} />
-            <Route path="/cadastro"  component={Cadastro} /> */}
+            <Route path="/" exact component={Home} />
         </BrowserRouter>
     )  
 }
