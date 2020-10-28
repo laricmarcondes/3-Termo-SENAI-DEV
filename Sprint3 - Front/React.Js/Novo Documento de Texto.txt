@@ -1,0 +1,326 @@
+// import React from 'react';
+// import Formik from 'formik'
+
+// function Home() {
+//     return(
+//         <div className="body w-full">
+//             <main>Teste</main>
+//         </div>
+//     )
+// }
+
+// export default Home
+
+import React, { useEffect, useState } from 'react';
+import Card from '../../components/card/index';
+import Button from '../../components/button/index';
+
+function AEmpresaGeral() {
+
+    const [vaga, setVaga] = useState('');
+    const [idVaga, setIdVaga] = useState(0);
+    const [vagas, setVagas] = useState([]);
+
+    const [empresa, setEmpresa] = useState('');
+    const [idEmpresa, setIdEmpresa] = useState(0);
+    const [empresas, setEmpresas] = useState([]);
+
+    const [usuario, setUsuario] = useState('');
+    const [idUsuario, setIdUsuario] = useState(0);
+    const [usuarios, setUsuarios] = useState([]);
+
+    var Url: string = "http://localhost:5000/"
+
+    useEffect(() => {
+        listarVaga();
+    }, []);
+
+    useEffect(() => {
+        listarEmpresa();
+    }, []);
+
+    useEffect(() => {
+        listarUsuario();
+    }, []);
+
+    const listarVaga = () => {
+        fetch(Url + "api/vaga", {
+            method: 'GET',
+            headers: {
+                authorization: 'Bearer ' + localStorage.getItem('token-filmes')
+            }
+        })
+            .then(response => response.json())
+            .then(dados => {
+                listarEmpresa();
+                listarUsuario();
+                setVaga(dados);
+                setEmpresa(dados);
+                setUsuario(dados);
+            })
+            .catch(err => console.error(err));
+    }
+
+    const listarEmpresa = () => {
+        fetch(Url + "api/empresa", {
+            method: 'GET',
+            headers: {
+                authorization: 'Bearer ' + localStorage.getItem('token-filmes')
+            }
+        })
+            .then(response => response.json())
+            .then(dados => {
+                setEmpresa(dados);
+            })
+            .catch(err => console.error(err));
+    }
+
+    const listarUsuario = () => {
+        fetch(Url + "api/usuario", {
+            method: 'GET',
+            headers: {
+                authorization: 'Bearer ' + localStorage.getItem('token-filmes')
+            }
+        })
+            .then(response => response.json())
+            .then(dados => {
+                setUsuario(dados);
+            })
+            .catch(err => console.error(err));
+    }
+
+    return (
+        <main>
+
+            <div className="pl-8 pt-4 pb-6 bg-gray-100">
+
+                <div className="flex flex-row justify-center">
+
+                    <div className="pr-12">
+                        <div id="img" className="w-64 h-64 bg-gray-200 rounded-md border-2"> </div>
+                    </div>
+
+                    <div>
+                        <h1 className="text-4xl">Microsoft</h1>
+
+                        <p className="text-2xl">Cadastrada desde 11/11/2020</p>
+
+                        <p className="pb-6">Finge que tem uma descrição aqui</p>
+
+                        <p className="ri-mail-line">Email de contato</p>
+                        <div className="pb-3">email@gmail.com</div>
+
+                        <div className="flex flex-row">
+                            <div>
+
+                                <p className="ri-phone-fill">Telefone</p>
+                                <div>11 2345-6789</div>
+                            </div>
+
+                            <div className=" pl-64">
+                                <Button className="ri-building-line" name="Detalhes da Empresa" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div className="flex flex-row justify-between font-medium pt-10">
+                <div className="pl-56">Nome da vaga</div>
+                <div className="pl-12">Localização</div>
+                <div className="">Data de expiração</div>
+                <div className=" pr-56">Salário</div>
+            </div>
+
+            <div className="pl-40 pr-40">
+                <Card className="flex flex-row justify-between">
+                    <div>Programador c# Junior</div>
+                    <div>São Paulo, SP</div>
+                    <div>11/11/2020</div>
+                    <div>R$ 1.200,00</div>
+                </Card>
+            </div>
+
+            {
+                vagas.map((item: any) => {
+                    return (
+                        <div key={item.idVaga}>
+                            <div className="flex flex-row justify-center">
+
+                                <div className="pr-12">
+                                    <div id="img"> </div>
+                                </div>
+
+                                <div>
+                                    <h1 className="text-4xl">{item.empresa.razaoSocial}</h1>
+
+                                    <p className="text-2xl">Cadastrada desde {item.usuario.dataCadastrado}</p>
+
+                                    <p>{item.empresa.descricao}</p>
+
+                                    <p className="ri-mail-line">Email de contato</p>
+                                    <div className="pb-3">email@gmail.com</div>
+
+                                    <div className="flex flex-row">
+                                        <div>
+
+                                            <p className="ri-phone-fill">Telefone</p>
+                                            <div>{item.empresa.telefoneEmpresa}</div>
+                                        </div>
+
+                                        <div className=" pl-64">
+                                            <Button className="ri-building-line" name="Detalhes da Empresa" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="flex flex-row justify-between font-medium pt-10">
+                                <div className="pl-56">Nome da vaga</div>
+                                <div className="pl-12">Localização</div>
+                                <div className="">Data de expiração</div>
+                                <div className=" pr-56">Salário</div>
+                            </div>
+
+                            <Card className="flex flex-row justify-between">
+                                <div>{item.titulo}</div>
+                                <div>{item.endereco}</div>
+                                <div>{item.dataExpiracao}</div>
+                                <div>{item.salario}</div>
+                            </Card>
+                        </div>
+                    )
+                })
+            }
+
+            <div className="flex justify-center">
+                <Button name="Voltar" />
+            </div>
+
+        </main>
+    );
+}
+
+export default AEmpresaGeral;
+
+import React, { useEffect, useState } from 'react';
+import Sidebar from '../../components/sidebar/Index';
+import Card from '../../components/card/index';
+import Button from '../../components/button/index';
+import VagaApi from '../../api/vagas';
+import { Vaga } from '../../interfaces/vaga';
+
+function AEmpresaGeral() {
+
+    const [vagas, setVagas] = useState<Vaga[]>();
+
+    useEffect(() => {
+        VagaApi.listar().then(data => setVagas(data))
+    }, []);
+
+    function renderVagas() {
+        // Enquanto vagas for vazio, 
+        // retorne uma mensagem de "Carregando..."
+        if (vagas === undefined) return (
+            <p className="flex justify-center">Carregando...</p>
+        )
+
+        return vagas.map((item: Vaga) => {
+            return(
+            <div key={item.idUsuario}>
+<div>
+                                    <h1 className="text-4xl">{item.empresa.razaoSocial}</h1>
+
+                                    <p className="text-2xl">Cadastrada desde {item.usuario.dataCadastrado}</p>
+
+                                    <p>{item.empresa.descricao}</p>
+
+                                    <p className="ri-mail-line">Email de contato</p>
+                                    <div className="pb-3">email@gmail.com</div>
+
+                                    <div className="flex flex-row">
+                                        <div>
+
+                                            <p className="ri-phone-fill">Telefone</p>
+                                            <div>{item.empresa.telefoneEmpresa}</div>
+                                        </div>
+
+                                        <div className=" pl-64">
+                                            <Button className="ri-building-line" name="Detalhes da Empresa" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                <Card className="flex flex-row justify-between">
+                    <div>{item.titulo}</div>
+                    <div>{item.endereco}</div>
+                    <div>{item.dataExpiracao}</div>
+                    <div>{item.salario}</div>
+                </Card>
+            </div>
+            )
+        })
+    }
+
+    return (
+        <div className="body w-full">
+            <Sidebar className="md:flex hidden"></Sidebar>
+            <main className="w-full">
+                <h1 className="p-10 pb-16 md:text-2xl text-md flex justify-center">Gerenciamento de candidatos</h1>
+
+                {/* Lista */}
+                {/* <div className="lg:w-2/3 m-auto md:text-md text-xs">
+                    <div className="flex flex-row justify-between mr-2 font-medium">
+                        <div className="md:w-32 w-20"> </div>
+                        <div className="flex-1">Nome do candidato</div>
+                        <div className="flex-1">Área</div>
+                        <div className="flex-1">Data de inscrição</div>
+                        <div>Detalhes</div>
+                    </div> */}
+                <div>
+                    <div className="flex flex-row justify-between font-medium pt-10">
+                    <div className="pl-56">Nome da vaga</div>
+                    <div className="pl-12">Localização</div>
+                    <div className="">Data de expiração</div>
+                    <div className=" pr-56">Salário</div>
+                </div>
+
+                <div className="pl-40 pr-40">
+                    <Card className="flex flex-row justify-between">
+                        <div>Programador c# Junior</div>
+                        <div>São Paulo, SP</div>
+                        <div>11/11/2020</div>
+                        <div>R$ 1.200,00</div>
+                    </Card>
+                </div>
+                    {renderVagas()}
+                </div>
+                <div className="flex justify-center">
+                    <Button name="Voltar" />
+                </div>
+            </main>
+        </div>
+    )
+}
+
+export default AEmpresaGeral;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

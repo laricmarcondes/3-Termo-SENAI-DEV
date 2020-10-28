@@ -1,0 +1,38 @@
+* {
+    font-family: "Roboto"
+}
+
+.line-vertical {
+    height:1px;
+}
+
+.line-horizontal {
+    width:1px;
+}
+
+.body{ 
+    display:flex;
+    flex-direction: row;
+    height:100vh; 
+    background-color:whitesmoke;
+}
+
+.bg-primary-color {
+    background-color: #CD322B;
+}
+
+.bg-secondary-color {
+    background-color: #131315;
+}
+
+.text-primary-color {
+    color: #CD322B;
+}
+
+.text-secondary-color {
+    color: #131315;
+}
+
+.border-primary-color {
+    border-color: #CD322B;
+}
