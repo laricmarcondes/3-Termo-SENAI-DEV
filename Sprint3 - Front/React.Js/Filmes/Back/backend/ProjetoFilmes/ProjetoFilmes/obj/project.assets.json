@@ -12430,27 +12430,20 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Laric\\.nuget\\packages\\": {},
-    "C:\\Microsoft\\Xamarin\\NuGet\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\43216437833\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Laric\\OneDrive\\Documentos\\SENAI\\3ºTermo\\Sprint3 - Front\\React.Js\\Back\\backend\\ProjetoFilmes\\ProjetoFilmes\\ProjetoFilmes.csproj",
+      "projectUniqueName": "C:\\Users\\43216437833\\Documents\\3-Termo-SENAI-DEV\\Sprint3 - Front\\React.Js\\Filmes\\Back\\backend\\ProjetoFilmes\\ProjetoFilmes\\ProjetoFilmes.csproj",
       "projectName": "ProjetoFilmes",
-      "projectPath": "C:\\Users\\Laric\\OneDrive\\Documentos\\SENAI\\3ºTermo\\Sprint3 - Front\\React.Js\\Back\\backend\\ProjetoFilmes\\ProjetoFilmes\\ProjetoFilmes.csproj",
-      "packagesPath": "C:\\Users\\Laric\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Laric\\OneDrive\\Documentos\\SENAI\\3ºTermo\\Sprint3 - Front\\React.Js\\Back\\backend\\ProjetoFilmes\\ProjetoFilmes\\obj\\",
+      "projectPath": "C:\\Users\\43216437833\\Documents\\3-Termo-SENAI-DEV\\Sprint3 - Front\\React.Js\\Filmes\\Back\\backend\\ProjetoFilmes\\ProjetoFilmes\\ProjetoFilmes.csproj",
+      "packagesPath": "C:\\Users\\43216437833\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\43216437833\\Documents\\3-Termo-SENAI-DEV\\Sprint3 - Front\\React.Js\\Filmes\\Back\\backend\\ProjetoFilmes\\ProjetoFilmes\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Microsoft\\Xamarin\\NuGet\\",
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-      ],
       "configFilePaths": [
-        "C:\\Users\\Laric\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        "C:\\Users\\43216437833\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.1"
@@ -12535,7 +12528,7 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.301\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.100\\RuntimeIdentifierGraph.json"
       }
     }
   }
