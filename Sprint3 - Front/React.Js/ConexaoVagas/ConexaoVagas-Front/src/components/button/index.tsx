@@ -1,14 +1,13 @@
-import React, { ButtonHTMLAttributes } from 'react';
+import React from 'react';
 import './style.css';
 
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>{
-    name: string;
-}
-
-const Button: React.FC<ButtonProps> = ({name}) => {
+function Button (props: any)  {
     return(
         <div>
-            <button className="ButtonArea">{name}</button>
+            <button {...props} type="button"
+                                className={"ButtonArea focus:outline-none " + props.className}>
+                {props.children}
+            </button>
         </div>
     );
 }

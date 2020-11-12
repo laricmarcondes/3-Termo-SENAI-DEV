@@ -1,5 +1,5 @@
-import { Usuario } from "../interfaces/usuario";
-import { API_URL, TOKEN_KEY } from "./apisettings";
+import { Usuario } from "../models/usuario";
+import { API_URL, handleErrors, TOKEN_KEY } from "./apisettings";
 
 // Define o controller de comunicação da API.
 // A URL ficaria assim:
@@ -16,6 +16,7 @@ function listar(): Promise<Usuario[]> {
             authorization: 'Bearer ' + localStorage.getItem(TOKEN_KEY)
         }
     })
+        .then(handleErrors)
         .then(response => {
             return response.json();
         })
@@ -34,6 +35,7 @@ function buscarPorEmail(email: string): Promise<Usuario> {
             authorization: 'Bearer ' + localStorage.getItem(TOKEN_KEY)
         }
     })
+        .then(handleErrors)
         .then(response => {
             return response.json();
         })
@@ -51,6 +53,7 @@ function buscarAutorizado(): Promise<Usuario> {
             authorization: 'Bearer ' + localStorage.getItem(TOKEN_KEY)
         }
     })
+        .then(handleErrors)
         .then(response => {
             return response.json();
         })
@@ -67,6 +70,7 @@ function deletar(): void {
             authorization: 'Bearer ' + localStorage.getItem(TOKEN_KEY)
         }
     })
+        .then(handleErrors)
         .then(response => response.json())
         .catch(err => console.error(err));
 }

@@ -11,7 +11,7 @@
 }
 .side-bar {
   z-index: 100;
-  position: relative;
+  position: fixed;
   width: 80px;
   top: 0;
   bottom: 0;
@@ -51,12 +51,12 @@ transition: 1.5s;
   width: 100%;
 }
 .side-container.top {
-  height: 20%;
+  height: 100px;
   top: 1%;
 }
 .side-container.middle {
   padding-top: 10px;
-  height: 65%;
+  height: 80%;
   top: 55%;
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
@@ -80,7 +80,7 @@ transition: 1.5s;
   stroke: #fff;
 }
 .side-button {
-  height: 15%;
+  height: 75px;
   margin: 5px 0;
   background-color: #131315;
   cursor: pointer;
@@ -114,18 +114,80 @@ transition: 1.5s;
   -webkit-transition: 0.33s ease;
   transition: 0.33s ease;
 }
-.side-button.c-vagas::before {
+
+/*  MENU ADM  */
+
+.side-button.a-dashboard::before {
+  content: "Dashboard";
+  color:white;
+}
+.side-button.a-dashboard:after {
+  background: url(../../assets/icons/dashboard.svg) no-repeat center;
+}
+
+.side-button.a-lista-candidato::before {
+  content: "Candidatos";
+  color:white;
+}
+.side-button.a-lista-candidato:after {
+  background: url(../../assets/icons/profile.svg) no-repeat center;
+}
+
+.side-button.a-gerenciamento-empresas::before {
+  content: "Empresas";
+  color:white;
+}
+.side-button.a-gerenciamento-empresas:after {
+  background: url(../../assets/icons/building-line.svg) no-repeat center;
+}
+
+/*  MENU EMPRESA  */
+
+.side-button.e-dashboard::before {
+  content: "Dashboard";
+  color:white;
+}
+.side-button.e-dashboard:after {
+  background: url(../../assets/icons/dashboard.svg) no-repeat center;
+}
+
+.side-button.e-suas-vagas::before {
+  content: "Minhas Vagas";
+  color:white;
+}
+.side-button.e-suas-vagas:after {
+  background: url(../../assets/icons/vagas.svg) no-repeat center;
+}
+
+.side-button.e-cadastrar-vagas::before {
+  content: "Cadastrar Vaga";
+  color:white;
+}
+.side-button.e-cadastrar-vagas:after {
+  background: url(../../assets/icons/add.svg) no-repeat center;
+}
+
+.side-button.e-editar-perfil::before {
+  content: "Minha Empresa";
+  color:white;
+}
+.side-button.e-editar-perfil:after {
+  background: url(../../assets/icons/building-line.svg) no-repeat center;
+}
+
+/*  MENU CANDIDATO  */
+.side-button.vagas::before {
   content: "Vagas";
   color:white;
 }
-.side-button.c-vagas:after {
+.side-button.vagas:after {
   background: url(../../assets/icons/vagas.svg) no-repeat center;
 }
-.side-button.c-historico::before {
-  content: "Histórico de inscrições";
+.side-button.c-historico-candidaturas::before {
+  content: "Inscrições";
   color:white;
 }
-.side-button.c-historico:after {
+.side-button.c-historico-candidaturas:after {
   background: url(../../assets/icons/historico.svg) no-repeat center;
 }
 .side-button.c-meu-perfil::before {
@@ -135,9 +197,13 @@ transition: 1.5s;
 .side-button.c-meu-perfil:after {
   background: url(../../assets/icons/user-3-line.svg) no-repeat center;
 }
+
+/* . */
+
 .side-button.logout::before {
   content: "Logoff";
   color:white;
+
 }
 .side-button.logout:after {
   background: url(../../assets/icons/logout.svg) no-repeat center;
@@ -152,12 +218,13 @@ transition: 1.5s;
 }
 
 .logoSenai {
-  margin-top:8em;
+  display: flex;
+  position: absolute;
+  bottom: 3em;
   max-width: 60%;
   margin-left:18%
 }
 
 .logoSenai:before {
-  margin-top:5em
-  
+  margin-top:5em;
 }

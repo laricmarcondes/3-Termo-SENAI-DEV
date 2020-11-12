@@ -1,6 +1,6 @@
-import { Candidato } from "../interfaces/candidato";
-import { CandidatoViewmodel } from "../interfaces/candidatoViewmodel";
-import { API_URL, TOKEN_KEY } from "./apisettings";
+import { Candidato } from "../models/candidato";
+import { API_URL, handleErrors, TOKEN_KEY } from "./apisettings";
+import MatchesApi from "../api/matching";
 
 // Define o controller de comunicação da API.
 // A URL ficaria assim:
@@ -10,14 +10,14 @@ const CONTROLLER = "Candidato/";
 /**
  * Lista os candidatos.
  */
-function listar(): Promise<CandidatoViewmodel[]> {
-    // http://localhost:5000/api/Candidato/
+function listar(): Promise<Candidato[]> {
     return fetch(API_URL + CONTROLLER, {
         method: "GET",
         headers: {
             authorization: 'Bearer ' + localStorage.getItem(TOKEN_KEY)
         }
     })
+        .then(handleErrors)
         .then(response => {
             return response.json();
         })
@@ -29,7 +29,7 @@ function listar(): Promise<CandidatoViewmodel[]> {
  * @param id ID do candidato
  * @returns O candidato buscado.
  */
-function buscarPorId(id: number): Promise<CandidatoViewmodel> {
+function listarPorStatus(id: number): Promise<Candidato> {
     // http://localhost:5000/api/Candidato/5
     return fetch(API_URL + CONTROLLER + id, {
         method: "GET",
@@ -37,6 +37,7 @@ function buscarPorId(id: number): Promise<CandidatoViewmodel> {
             authorization: 'Bearer ' + localStorage.getItem(TOKEN_KEY)
         }
     })
+        .then(handleErrors)
         .then(response => {
             return response.json();
         })
@@ -59,13 +60,28 @@ function salvar(candidato: Candidato, id: number): Promise<Candidato> {
         body: JSON.stringify(candidato),
         headers: {
             'content-type': 'application/json',
-            authorization: 'Bearer ' + localStorage.getItem('token-filmes')
+            authorization: 'Bearer ' + localStorage.getItem(TOKEN_KEY)
         }
     })
+        .then(handleErrors)
         .then(() => {
+            MatchesApi.atualizar();
             return candidato as any;
         })
         .catch(err => console.error(err));
 }
 
-export default {listar, buscarPorId, salvar}
+function mudarStatus(id: number, idStatus: number): void {
+
+        fetch(API_URL + CONTROLLER + `Status?id=${id}&idStatus=${idStatus}`, {
+        method: "PUT",
+        headers: {
+            'content-type': 'application/json',
+            authorization: 'Bearer ' + localStorage.getItem(TOKEN_KEY)
+        }
+    })
+        .then(handleErrors)
+        .catch(err => console.error(err));
+}
+
+export default {listar, buscarPorId: listarPorStatus, salvar, mudarStatus}

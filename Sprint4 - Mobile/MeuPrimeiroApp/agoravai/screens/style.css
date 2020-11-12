@@ -1,0 +1,17 @@
+.text{
+    background-color: lightcyan;
+    height: 100vw;
+    font-family: sans-serif;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    display: flex;
+}
+
+.centro-sub{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+

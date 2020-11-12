@@ -1,0 +1,14 @@
+  
+.ButtonAreaForm{
+    background-color: #CD322B;
+    color: #ffffff;
+    border-radius: 5px;
+    padding: 0.5em 2em 0.5em 2em;
+    border: none;
+    border-style: none;
+} 
+.ButtonAreaForm:hover{
+    background-color: #b93129;
+    border: none;
+    border-style: none;
+}

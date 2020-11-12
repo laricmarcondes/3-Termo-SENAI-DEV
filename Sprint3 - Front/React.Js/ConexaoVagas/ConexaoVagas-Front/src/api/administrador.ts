@@ -1,5 +1,5 @@
-import { Administrador } from "../interfaces/administrador";
-import { API_URL, TOKEN_KEY } from "./apisettings";
+import { Administrador } from "../models/administrador";
+import { API_URL, handleErrors, TOKEN_KEY } from "./apisettings";
 
 const CONTROLLER = "Administrador/";
 
@@ -13,6 +13,7 @@ function listar(): Promise<Administrador[]> {
             authorization: 'Bearer ' + localStorage.getItem(TOKEN_KEY)
         }
     })
+        .then(handleErrors)
         .then(response => {
             return response.json();
         })
@@ -32,6 +33,7 @@ function buscarPorId(id: number): Promise<Administrador> {
             authorization: 'Bearer ' + localStorage.getItem(TOKEN_KEY)
         }
     })
+        .then(handleErrors)
         .then(response => {
             return response.json();
         })
@@ -54,9 +56,10 @@ function salvar(administrador: Administrador, id: number): Promise<Administrador
         body: JSON.stringify(administrador),
         headers: {
             'content-type': 'application/json',
-            authorization: 'Bearer ' + localStorage.getItem('token-filmes')
+            authorization: 'Bearer ' + localStorage.getItem(TOKEN_KEY)
         }
     })
+        .then(handleErrors)
         .then(() => {
             return administrador as any;
         })

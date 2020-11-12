@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@reactchartjs/react-chart.js": "^1.0.0-rc.2",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
@@ -11,16 +12,17 @@
     "@types/react": "^16.9.0",
     "@types/react-dom": "^16.9.0",
     "@types/react-router-dom": "^5.1.6",
-    "@types/yup": "^0.29.8",
-    "formik": "^2.2.0",
+    "chart.js": "^2.9.4",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
-    "typescript": "~3.7.2",
-    "yup": "^0.29.3"
+    "typescript": "~3.7.2"
   },
-  "engines": { "npm": "6.x", "node": "12.x" },
+  "engines": {
+    "npm": "6.x",
+    "node": ""
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

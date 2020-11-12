@@ -6,13 +6,18 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement>{
     name:string;
 }
 
-const Input: React.FC<InputProps> = ({label, name, ...rest}) => {
+const Input: React.FC<InputProps> = ({label, name, ...props}) => {
     return (
-        <div >
-       
-            <label htmlFor={name}>{label}</label><br/>
-            <input className=" w-64 bg-gray-200 rounded-md border-2 px-2 py-1" 
-                   type="text" id={name}{...rest}></input>
+        <div className={props.className}>
+            <label className="font-bold" htmlFor={name}>{label}</label><br/>
+            <div className="rounded-md border-2 border-gray-400 w-64
+                            hover:border-gray-500 w-full">
+                <input value="" {...props} className="bg-white focus:bg-gray-100 border-0 
+                                            focus:outline-none w-full py-2 px-2 
+                                            appearance-none" 
+                    id={name}>
+                </input>
+            </div>
         </div>
     );
 }

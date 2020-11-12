@@ -1,22 +1,49 @@
-import { Empresa } from "../interfaces/empresa";
-import { EmpresaViewmodel } from "../interfaces/empresaViewmodel";
-import { API_URL, TOKEN_KEY } from "./apisettings";
+import { Empresa } from "../models/empresa";
+import { API_URL, handleErrors, TOKEN_KEY } from "./apisettings";
 
 const CONTROLLER = "Empresa/";
 
 /**
  * Lista os empresas.
  */
-function listar(): Promise<EmpresaViewmodel[]> {
+function listar(): Promise<Empresa[]> {
     return fetch(API_URL + CONTROLLER, {
         method: "GET",
         headers: {
             authorization: 'Bearer ' + localStorage.getItem(TOKEN_KEY)
         }
     })
+        .then(handleErrors)
         .then(response => {
             return response.json();
         })
+        .catch(err => console.error(err));
+}
+/**
+ * Lista por status de usuário.
+ * @param id ID do status de usuário 
+ *      PENDENTE = 1,
+ *      ATIVO = 2,
+ *      BLOQUEADO = 3,
+ *      RECUSADO = 4
+ */
+function listarPorStatus(id: number): Promise<Empresa[]> {
+    return fetch(API_URL + CONTROLLER, {
+        method: "GET",
+        headers: {
+            authorization: 'Bearer ' + localStorage.getItem(TOKEN_KEY)
+        }
+    })
+        .then(handleErrors)
+        .then(response => {
+            return response.json();
+        })
+        .then((data) => {
+            return data.filter((empresa: Empresa) => {
+                return empresa.idStatusUsuario == id
+            });
+        })
+
         .catch(err => console.error(err));
 }
 
@@ -25,7 +52,7 @@ function listar(): Promise<EmpresaViewmodel[]> {
  * @param id ID do empresa
  * @returns O empresa buscado.
  */
-function buscarPorId(id: number): Promise<EmpresaViewmodel> {
+function buscarPorId(id: number): Promise<Empresa> {
     // http://localhost:5000/api/Empresa/5
     return fetch(API_URL + CONTROLLER + id, {
         method: "GET",
@@ -33,6 +60,7 @@ function buscarPorId(id: number): Promise<EmpresaViewmodel> {
             authorization: 'Bearer ' + localStorage.getItem(TOKEN_KEY)
         }
     })
+        .then(handleErrors)
         .then(response => {
             return response.json();
         })
@@ -55,13 +83,27 @@ function salvar(empresa: Empresa, id: number): Promise<Empresa> {
         body: JSON.stringify(empresa),
         headers: {
             'content-type': 'application/json',
-            authorization: 'Bearer ' + localStorage.getItem('token-filmes')
+            authorization: 'Bearer ' + localStorage.getItem(TOKEN_KEY)
         }
     })
+        .then(handleErrors)
         .then(() => {
             return empresa as any;
         })
         .catch(err => console.error(err));
 }
 
-export default {listar, buscarPorId, salvar}
+function mudarStatus(id: number, idStatus: number): void {
+
+    fetch(API_URL + CONTROLLER + `Status?id=${id}&idStatus=${idStatus}`, {
+    method: "PUT",
+    headers: {
+        'content-type': 'application/json',
+        authorization: 'Bearer ' + localStorage.getItem(TOKEN_KEY)
+    }
+})
+    .then(handleErrors)
+    .catch(err => console.error(err));
+}
+
+export default {listar,listarPorStatus, buscarPorId, salvar, mudarStatus}

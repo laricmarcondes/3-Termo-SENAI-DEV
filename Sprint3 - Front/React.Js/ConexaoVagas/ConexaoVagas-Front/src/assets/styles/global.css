@@ -1,5 +1,5 @@
 * {
-    font-family: "Roboto"
+    font-family: "Roboto", sans-serif;
 }
 
 .line-vertical {
@@ -13,7 +13,7 @@
 .body{ 
     display:flex;
     flex-direction: row;
-    height:100vh; 
+    min-height:100vh; 
     background-color:whitesmoke;
 }
 
@@ -35,4 +35,17 @@
 
 .border-primary-color {
     border-color: #CD322B;
+}
+
+.bg-cv-gray {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.force-center {
+    margin: 0 auto;
+    position: absolute;
+    left:0;
+    bottom:0;
+    right:0;
+    top:0;
 }
