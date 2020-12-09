@@ -8,6 +8,6 @@ export class Candidatura {
     curriculo?: string;
     visualizado?: boolean;
     dataCriado?: string;
-    idCandidatoNavigation?: Candidato  = undefined;
-    idVagaNavigation?: Vaga  = undefined;
+    idCandidatoNavigation?: Candidato = undefined;
+    idVagaNavigation?: Vaga = undefined;
 }

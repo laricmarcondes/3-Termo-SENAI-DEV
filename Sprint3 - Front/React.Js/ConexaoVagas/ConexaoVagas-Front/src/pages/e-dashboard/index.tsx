@@ -2,47 +2,47 @@ import React, { useEffect, useState } from 'react';
 import Sidebar from '../../components/sidebar/Index';
 import Card from '../../components/card/index';
 import EmpresaApi from '../../api/empresa';
-import VagaApi from '../../api/vagas';
-import CandidaturaApi from '../../api/candidatura';
+import Hamburguer from '../../components/hamburguer';
 import { graphCandidaturaEmpresa } from '../../services/graph';
 import { Line } from '@reactchartjs/react-chart.js';
-import { Vaga } from '../../models/vaga';
 import { Empresa } from '../../models/empresa';
-import Hamburguer from '../../components/hamburguer';
 import { Jwt } from '../../services/auth';
+import LoadingPage from '../loading';
 
 function EDashboard() {
 
     const [empresa, setEmpresa] = useState<Empresa>(new Empresa());
-
     const [qtdCandidaturas, setQtdCandidaturas] = useState<number>(0);
     const [chartCandidaturasMeses, setChartCandidaturasMeses] = useState<string[]>([]);
     const [chartCandidaturasCadastros, setChartCandidaturasCadastros] = useState<number[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        EmpresaApi.buscarPorId(Jwt().jti).then(data => {
-            setEmpresa(data);
-
-            var qtde = 0;
-            data.vaga?.forEach(item => qtde = qtde + item.candidatura!.length)
-            setQtdCandidaturas(qtde)
-
-            var graphCandidatura = graphCandidaturaEmpresa(12, data);
-
-            var joinedMeses: string[] = [];
-            var joinedCadastros: number[] = [];
-
-            graphCandidatura.map(chart => {
-                joinedMeses.push(chart.mes);
-                joinedCadastros.push(chart.candidaturas);
-            });
-
-            setChartCandidaturasMeses(joinedMeses);
-            setChartCandidaturasCadastros(joinedCadastros)
-
-        });
+        Promise.all([
+            EmpresaApi.buscarPorId(Jwt().jti).then(data => {
+                setEmpresa(data);
+    
+                var qtde = 0;
+                data.vaga?.forEach(item => qtde = qtde + item.candidatura!.length)
+                setQtdCandidaturas(qtde)
+    
+                var graphCandidatura = graphCandidaturaEmpresa(12, data);
+    
+                var joinedMeses: string[] = [];
+                var joinedCadastros: number[] = [];
+    
+                graphCandidatura.map(chart => {
+                    joinedMeses.push(chart.mes);
+                    joinedCadastros.push(chart.candidaturas);
+                });
+    
+                setChartCandidaturasMeses(joinedMeses);
+                setChartCandidaturasCadastros(joinedCadastros)
+    
+            })
+        ])
+        .then(() => setIsLoading(false))
         
-
     }, []);
 
     const dataCandidatura = {
@@ -71,9 +71,15 @@ function EDashboard() {
         },
     }
 
+    if (isLoading) {
+        return (
+            <LoadingPage/>
+        )
+    }
+
     return (
         <div className="body w-full">
-            <Hamburguer className="md:hidden flex fixed"/>
+            <Hamburguer className="md:hidden flex fixed" />
             <Sidebar className="md:flex hidden"></Sidebar>
             <main className="md:w-2/3 w-full mx-auto p-5">
                 <h1 className="p-10 md:text-2xl text-xl flex justify-center">Dashboard</h1>

@@ -38,4 +38,4 @@ function atualizar(): Promise<Matching[]> {
 }
 
 
-export default {listar, atualizar}
+export default { listar, atualizar }

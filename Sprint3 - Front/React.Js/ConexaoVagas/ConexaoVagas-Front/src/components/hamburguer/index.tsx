@@ -1,3 +1,4 @@
+/* eslint-disable eqeqeq */
 import React from 'react';
 import Logo from '../../assets/imgs/logo-dark.png';
 import LogoSenai from '../../assets/imgs/logo-senai-principal.png';
@@ -23,10 +24,10 @@ function Hamburguer(props: any) {
                 <div className="flex flex-col text-white m-5 nav-mobile">
                     <Link to="/login"
                         className="hover:text-gray-300">Login
-                              <i className="ri-login-circle-line" /></Link>
+                            <i className="ri-login-circle-line" /></Link>
                     <Link to="/cadastro"
                         className="hover:text-gray-300">Cadastro
-                              <i className="ri-user-add-line" /></Link>
+                            <i className="ri-user-add-line" /></Link>
                 </div>
             )
         } else {
@@ -35,16 +36,16 @@ function Hamburguer(props: any) {
                     <div className="flex flex-col text-white m-5 nav-mobile">
                         <Link to="/Administrador/dashboard"
                             className="hover:text-gray-300">Dashboard
-                              <i className="ri-dashboard-fill" /></Link>
+                            <i className="ri-dashboard-fill" /></Link>
                         <Link to="/Administrador/gerenciamento-candidatos"
                             className="hover:text-gray-300">Gerenciar Candidatos
-                              <i className="ri-article-line" /></Link>
+                            <i className="ri-article-line" /></Link>
                         <Link to="/Administrador/gerenciamento-empresas"
                             className="hover:text-gray-300">Gerenciar Empresas
-                              <i className="ri-building-4-line" /></Link>
-                        <a className=" hover:text-gray-300 cursor-pointer"
+                            <i className="ri-building-4-line" /></Link>
+                        <span className=" hover:text-gray-300 cursor-pointer"
                             onClick={() => logout()}>Logoff
-                            <i className="ri-logout-circle-line" /></a>
+                            <i className="ri-logout-circle-line" /></span>
                     </div>
                 )
             }
@@ -53,39 +54,39 @@ function Hamburguer(props: any) {
                     <div className="flex flex-col text-white m-5 nav-mobile">
                         <Link to="/Empresa/dashboard"
                             className="hover:text-gray-300">Dashboard
-                              <i className="ri-dashboard-fill" /></Link>
+                            <i className="ri-dashboard-fill" /></Link>
                         <Link to="/Empresa/suas-vagas"
                             className="hover:text-gray-300">Suas Vagas
-                              <i className=" ri-profile-line" /></Link>
+                            <i className=" ri-profile-line" /></Link>
                         <Link to="/Empresa/cadastrar-vagas"
                             className="hover:text-gray-300">Cadastrar Vagas
-                              <i className="ri-add-circle-line" /></Link>
+                            <i className="ri-add-circle-line" /></Link>
                         <Link to="/Empresa/editar-perfil"
                             className="">Editar Perfil
                             <i className="ri-building-4-line" /></Link>
-                        <a className="hover:text-gray-300 cursor-pointer"
+                        <span className="hover:text-gray-300 cursor-pointer"
                             onClick={() => logout()}>Logoff
-                            <i className="ri-logout-circle-line" /></a>
+                            <i className="ri-logout-circle-line" /></span>
                     </div>
                 )
             }
             else if (Jwt().Role == TipoUsuario.CANDIDATO) {
                 return (
                     <div className="flex flex-col text-white m-5 nav-mobile">
-                        <Link to="/Candidato/vagas"
+                        <Link to="/vagas"
                             className="hover:text-gray-300">Vagas
-                              <i className=" ri-profile-line" /></Link>
+                            <i className=" ri-profile-line" /></Link>
                         <Link to="/Candidato/historico-candidaturas"
                             className="hover:text-gray-300">Histórico de Candidaturas
-                              <i className="ri-history-line" /></Link>
+                            <i className="ri-history-line" /></Link>
                         {/* <Link to={`/candidato/detalhes/${Jwt().Jti}`} 
-                              className="hover:text-gray-300">Meu Perfil
+                            className="hover:text-gray-300">Meu Perfil
                               <i className="ri-user-line"/></Link> */}
                         <div className="hover:text-gray-300 cursor-pointer">Meu Perfil
-                              <i className="ri-user-line" /></div>
-                        <a className="hover:text-gray-300 cursor-pointer"
+                            <i className="ri-user-line" /></div>
+                        <span className="hover:text-gray-300 cursor-pointer"
                             onClick={() => logout()}>Logoff
-                            <i className="ri-logout-circle-line" /></a>
+                            <i className="ri-logout-circle-line" /></span>
                     </div>
                 )
             }
@@ -98,7 +99,7 @@ function Hamburguer(props: any) {
 
             <label htmlFor="toggle"
                 className="bg-secondary-color rounded-full w-12 h-12 m-3 
-                           shadow shadow-lg flex justify-center items-center cursor-pointer ">
+                        shadow shadow-lg flex justify-center items-center cursor-pointer ">
                 <div>
                     <i className="barra fa fa-bars text-white text-2xl"></i>
                 </div>
@@ -109,12 +110,12 @@ function Hamburguer(props: any) {
                 <div className="flex items-center">
                     <label className="ri-close-line text-white text-3xl relative cursor-pointer" htmlFor="toggle"></label>
                     <Link to="/">
-                        <img className="h-16 force-center" src={Logo}></img>
+                        <img className="h-16 force-center" src={Logo} alt="logo"></img>
                     </Link>
                 </div>
                 {menu()}
                 <div>
-                    <img className="w-32 absolute bottom-0 inset-x-0 m-auto pb-16" src={LogoSenai}></img>
+                    <img className="w-32 absolute bottom-0 inset-x-0 m-auto pb-16" src={LogoSenai} alt="logo senai"></img>
                 </div>
 
             </div>

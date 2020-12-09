@@ -66,4 +66,4 @@ function salvar(administrador: Administrador, id: number): Promise<Administrador
         .catch(err => console.error(err));
 }
 
-export default {listar, buscarPorId, salvar}
+export default { listar, buscarPorId, salvar }

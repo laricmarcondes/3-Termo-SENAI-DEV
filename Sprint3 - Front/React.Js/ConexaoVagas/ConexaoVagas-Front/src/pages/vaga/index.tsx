@@ -1,17 +1,21 @@
+/* eslint-disable eqeqeq */
 import React, { useEffect, useState } from 'react';
 import Button from '../../components/button';
 import VagaApi from '../../api/vagas'
 import CandidaturaApi from '../../api/candidatura'
 import Sidebar from '../../components/sidebar/Index';
+import Hamburguer from '../../components/hamburguer';
 import { Vaga } from '../../models/vaga';
 import { HabilidadeVaga } from '../../models/habilidadeVaga';
 import { BeneficioVaga } from '../../models/beneficioVaga';
 import { Link } from 'react-router-dom';
 import { Candidatura } from '../../models/candidatura';
 import { Jwt } from '../../services/auth';
-import Hamburguer from '../../components/hamburguer';
+import { TipoUsuario } from '../../utils/enums';
+import { useAlert } from 'react-alert';
 import { TOKEN_KEY } from '../../api/apisettings';
-import { TipoUsuario } from '../../utils/enums'
+import LoadingPage from '../loading';
+import candidatura from '../../api/candidatura';
 
 function VerVaga({ match }: any) {
 
@@ -20,9 +24,19 @@ function VerVaga({ match }: any) {
     } = match;
 
     const [vaga, setVaga] = useState<Vaga>(new Vaga());
+    const [isLoading, setIsLoading] = useState(true);
+
+    const alert = useAlert();
 
     useEffect(() => {
-        VagaApi.buscarPorId(id).then(data => setVaga(data))
+        Promise.all([
+            VagaApi.buscarPorId(id).then(data => {
+                setVaga(data)
+                VagaApi.somaVisualizacao(data.idVaga!);
+            })
+        ])
+        .then(() => setIsLoading(false));
+
     }, []);
 
     function renderHabilidades() {
@@ -32,8 +46,8 @@ function VerVaga({ match }: any) {
 
         return vaga.habilidadeVaga?.map((item: HabilidadeVaga) => {
             return (
-                <a className="bg-gray-400 px-1 rounded-full m-1 h-8 flex items-center cursor-pointer">
-                    {item.idHabilidadeNavigation!.nomeHabilidade}</a>
+                <span className="bg-gray-400 p-1 rounded-full h-8 flex items-center cursor-pointer">
+                    {item.idHabilidadeNavigation!.nomeHabilidade}</span>
             )
         })
     }
@@ -45,8 +59,8 @@ function VerVaga({ match }: any) {
 
         return vaga.beneficioVaga?.map((item: BeneficioVaga) => {
             return (
-                <a className="bg-gray-400 px-1 rounded-full m-1 h-8 flex items-center cursor-pointer">
-                    {item.idBeneficioNavigation!.nomeBeneficio}</a>
+                <span className="bg-gray-400 p-1 rounded-full h-8 flex items-center cursor-pointer">
+                    {item.idBeneficioNavigation!.nomeBeneficio}</span>
             )
         })
     }
@@ -61,125 +75,112 @@ function VerVaga({ match }: any) {
         if (candidaturaManipulavel != undefined) {
             CandidaturaApi.salvar(candidaturaManipulavel, 0).then(data => {
                 if (data != null || data != undefined) {
-                    alert("Cadastrado com sucesso.")
+                    alert.success("Cadastrado com sucesso.");
+                    setVaga({...vaga, candidatura: [...vaga.candidatura!, data]});
                 }
             });
         } else {
-            alert('Campos não preenchidos.')
+            alert.error('Campos não preenchidos.')
         }
     }
 
-    const botao = () => {
-        const token = localStorage.getItem(TOKEN_KEY);
-        if (token === undefined || token === null) {
-            return (
-                <div>
-
-                </div>
-            )
-        } else {
-            if (Jwt().Role == TipoUsuario.ADMINISTRADOR) {
-                return (
-                    <div className="flex justify-center pt-6">
-                        <Link to={`/empresa/resumo/${vaga.idEmpresa}`}>
-                            <Button name="Voltar">Voltar</Button>
-                        </Link>
-                    </div>
-                )
-            } else if (Jwt().Role == TipoUsuario.CANDIDATO) {
-                return (
-                    <div className="flex flex-col items-center justify-center pt-6">
-                        <div className="pb-5">
-                            <Button name="Candidatar-se"
-                                onClick={() => salvar()}>Candidatar-se</Button>
-                        </div>
-
-                        <div>
-                            <Link to="/Candidato/vagas">
-                                <Button name="Voltar">Voltar</Button>
-                            </Link>
-                        </div>
-                    </div>
-
-                )
-            }
-        }
+    if (isLoading) {
+        return (
+            <LoadingPage />
+        )
     }
 
     return (
         <div className="body w-full">
             <Hamburguer className="md:hidden flex fixed" />
             <Sidebar className="md:flex hidden" />
-            <main className="w-full m-5">
-                <h1 className="p-10 md:text-2xl text-xl flex justify-center">Detalhes da vaga</h1>
+            <main className="w-full">
 
-                <div className="flex flex-col m-auto md:w-3/5 w-full">
+                <div className="flex flex-col m-auto lg:w-1/2 w-full bg-white shadow shadow-md body">
 
-                    <div className="flex justify-center">
-                        <p className="font-bold pt-3 pb-12 text-xl">Empresa: {vaga.idEmpresaNavigation?.razaoSocial}</p>
+                    <h1 className="p-10 md:text-2xl text-xl flex justify-center">Detalhes da vaga</h1>
+
+                    <div className="flex flex-col pb-10 justify-center items-center">
+                        <p className="text-xl">{vaga?.titulo}</p>
+                        <Link to={`/empresa/resumo/${vaga.idEmpresa}`}>
+                            <span className="text-link">
+                                {vaga.idEmpresaNavigation?.nomeFantasia}
+                            </span>
+                        </Link>
                     </div>
 
-                    <div className="w-full flex flex-col">
-                        <div className="grid md:grid-cols-2 grid-cols-1">
+                    <div className="flex flex-col items-center p-5">
+                        <div>
+                            <div className="mb-1 flex items-center">
+                                <i className="pr-2 ri-time-fill text-xl" />
+                                <p>Carga Horária de {vaga?.cargaHoraria}h</p>
+                            </div>
 
-                            {/* Coluna Esquerda */}
-                            <div className="flex flex-col">
-                                <div>
-                                    <div className="mb-8">
-                                        <p className="font-bold">Título:</p>
-                                        <p>{vaga?.titulo}</p>
-                                    </div>
+                            <div className="mb-1 flex items-center">
+                                <p className="pr-2 ri-money-dollar-circle-fill text-xl" />
+                                <p>R$ {vaga?.salario}</p>
+                            </div>
 
-                                    <div className="mb-8">
-                                        <p className="font-bold">Local:</p>
-                                        <p className="pr-8">{vaga?.idEnderecoNavigation?.localCompleto}</p>
-                                    </div>
+                            <div className="mb-3 flex items-center">
+                                <p className="pr-2 fa fa-graduation-cap text-xl" />
+                                <p>{vaga?.qualificacao}</p>
+                            </div>
 
-                                    <div className="mb-8">
-                                        <p className="font-bold">Carga horária:</p>
-                                        <p>{vaga?.cargaHoraria}</p>
-                                    </div>
+                            <div className="mb-4">
+                                <p className="font-bold pr-2">Descrição</p>
+                                <p>{vaga?.descricao}</p>
+                            </div>
 
-                                    <div className="mb-8">
-                                        <p className="font-bold">Habilidades buscadas:</p>
-                                        <div className="flex flex-row flex-wrap md:text-base text-xs m-2">
-                                            {renderHabilidades()}
-                                        </div>
-                                    </div>
+                            <div className="mb-4">
+                                <p className="font-bold pr-2">Sobre a empresa</p>
+                                <p className="pr-8">{vaga?.idEmpresaNavigation?.descricao}</p>
+                            </div>
+
+                            <div className="mb-4">
+                                <p className="font-bold pr-2">Local</p>
+                                <p className="pr-8">{vaga?.idEnderecoNavigation?.localCompleto}</p>
+                            </div>
+
+                            <div className="mb-4">
+                                <p className="font-bold">Habilidades buscadas</p>
+                                <div className="flex flex-row flex-wrap md:text-base text-xs mb-2 gap-2">
+                                    {renderHabilidades()}
                                 </div>
                             </div>
 
-                            {/* Coluna Direita */}
-                            <div className="flex flex-col">
-                                <div>
-                                    <div className="mb-8">
-                                        <p className="font-bold">Salário:</p>
-                                        <p>{vaga?.salario}</p>
-                                    </div>
-
-                                    <div className="mb-8">
-                                        <p className="font-bold">Qualificação:</p>
-                                        <p>{vaga?.qualificacao}</p>
-                                    </div>
-
-                                    <div className="mb-8">
-                                        <p className="font-bold">Descrição:</p>
-                                        <p>{vaga?.descricao}</p>
-                                    </div>
-
-                                    <div className="mb-4">
-                                        <p className="font-bold">Benefícios:</p>
-                                        <div className="flex flex-column flex-wrap md:text-base text-xs m-2">
-                                            {renderBeneficios()}
-                                        </div>
-                                    </div>
+                            <div className="mb-4">
+                                <p className="font-bold">Benefícios</p>
+                                <div className="flex flex-column flex-wrap md:text-base text-xs mb-2 gap-2">
+                                    {renderBeneficios()}
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div>
-                        {botao()}
-                    </div>
+                        {Jwt().Role == TipoUsuario.CANDIDATO && (
+                            <div className="mt-auto py-5 flex flex-col items-center justify-center gap-3">
+                                <div>
+                                    {!vaga.candidatura!.find(c => c.idCandidato == Jwt().jti) && (
+                                        <Button name="Candidatar-se"
+                                            onClick={() => salvar()}>Candidatar-se
+                                        </Button>
+                                    )}
+
+                                    {vaga.candidatura!.find(c => c.idCandidato == Jwt().jti) && (
+                                        <Button className="flex items-center"
+                                                name="Candidatado"
+                                                style={{backgroundColor: "green"}}>
+                                            Candidatado
+                                            <i className="ri-check-line text-white pl-2"></i>
+                                        </Button>
+                                    )}
+                                </div>
+
+                                <div>
+                                </div>
+                            </div>
+                        )}
+
+
                 </div>
             </main>
         </div>

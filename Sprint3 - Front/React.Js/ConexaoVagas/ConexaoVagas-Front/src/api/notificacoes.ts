@@ -81,4 +81,4 @@ function deletar(id: number): void {
         .catch(err => console.error(err));
 }
 
-export default {listar, buscarPorId, addNotificacao, deletar}
+export default { listar, buscarPorId, addNotificacao, deletar }

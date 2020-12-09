@@ -1,6 +1,5 @@
 import { Candidato } from "../models/candidato";
 import { API_URL, handleErrors, TOKEN_KEY } from "./apisettings";
-import MatchesApi from "../api/matching";
 
 // Define o controller de comunicação da API.
 // A URL ficaria assim:
@@ -65,15 +64,37 @@ function salvar(candidato: Candidato, id: number): Promise<Candidato> {
     })
         .then(handleErrors)
         .then(() => {
-            MatchesApi.atualizar();
             return candidato as any;
         })
         .catch(err => console.error(err));
 }
 
+/**
+ * 
+ * @param id ID do Candidato
+ * @param file Foto
+ */
+function uploadFoto(id: number, file: Blob) {
+
+    var img = new FormData();
+    img.append("file", file, id.toString());
+
+    return fetch(API_URL + CONTROLLER + "Img/upload/" + id, {
+        method: "POST",
+        body: img,
+        headers: {
+            'Accept': '*/*',
+            authorization: 'Bearer ' + localStorage.getItem(TOKEN_KEY)
+        }
+    })
+        .then(handleErrors)
+        .then(() => id)
+        .catch(err => console.error(err));
+}
+
 function mudarStatus(id: number, idStatus: number): void {
 
-        fetch(API_URL + CONTROLLER + `Status?id=${id}&idStatus=${idStatus}`, {
+    fetch(API_URL + CONTROLLER + `Status?id=${id}&idStatus=${idStatus}`, {
         method: "PUT",
         headers: {
             'content-type': 'application/json',
@@ -84,4 +105,4 @@ function mudarStatus(id: number, idStatus: number): void {
         .catch(err => console.error(err));
 }
 
-export default {listar, buscarPorId: listarPorStatus, salvar, mudarStatus}
+export default { listar, buscarPorId: listarPorStatus, salvar, uploadFoto, mudarStatus }

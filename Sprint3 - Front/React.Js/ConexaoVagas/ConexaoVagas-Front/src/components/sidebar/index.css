@@ -18,7 +18,7 @@
   left: 0;
   background-color: #131315;
   box-shadow: 4px 0px 25px -1px rgba(0,0,0,0.5);
-  font-size: 18px;
+  font-size: 16px;
   line-height: 22px;
   letter-spacing: 1.4px;
   text-transform: uppercase;
@@ -80,7 +80,7 @@ transition: 1.5s;
   stroke: #fff;
 }
 .side-button {
-  height: 75px;
+  height: 60px;
   margin: 5px 0;
   background-color: #131315;
   cursor: pointer;
@@ -130,7 +130,7 @@ transition: 1.5s;
   color:white;
 }
 .side-button.a-lista-candidato:after {
-  background: url(../../assets/icons/profile.svg) no-repeat center;
+  background: url(../../assets/icons/user-3-line.svg) no-repeat center;
 }
 
 .side-button.a-gerenciamento-empresas::before {
@@ -177,11 +177,11 @@ transition: 1.5s;
 
 /*  MENU CANDIDATO  */
 .side-button.vagas::before {
-  content: "Vagas";
+  content: "Buscar por vagas";
   color:white;
 }
 .side-button.vagas:after {
-  background: url(../../assets/icons/vagas.svg) no-repeat center;
+  background: url(../../assets/icons/search-line.svg) no-repeat center;
 }
 .side-button.c-historico-candidaturas::before {
   content: "Inscrições";
@@ -190,11 +190,19 @@ transition: 1.5s;
 .side-button.c-historico-candidaturas:after {
   background: url(../../assets/icons/historico.svg) no-repeat center;
 }
-.side-button.c-meu-perfil::before {
+/* .side-button.c-meu-perfil::before {
   content: "Meu Perfil";
   color:white;
 }
 .side-button.c-meu-perfil:after {
+  background: url(../../assets/icons/user-3-line.svg) no-repeat center;
+} */
+
+.side-button.c-editar-perfil::before {
+  content: "Meu Perfil";
+  color:white;
+}
+.side-button.c-editar-perfil:after {
   background: url(../../assets/icons/user-3-line.svg) no-repeat center;
 }
 
@@ -220,8 +228,8 @@ transition: 1.5s;
 .logoSenai {
   display: flex;
   position: absolute;
-  bottom: 3em;
-  max-width: 60%;
+  bottom: 0;
+  max-width: 50%;
   margin-left:18%
 }
 

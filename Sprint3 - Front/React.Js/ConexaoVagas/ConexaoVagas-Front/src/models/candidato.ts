@@ -20,9 +20,9 @@ export class Candidato {
     celularCandidato?: string;
     dataNascimento?: string;
     visualizacao?: number;
-    idEnderecoNavigation?: Endereco  = undefined;
-    idStatusUsuarioNavigation?: StatusUsuario  = undefined;
-    idUsuarioNavigation?: Usuario  = undefined;
+    idEnderecoNavigation?: Endereco = undefined;
+    idStatusUsuarioNavigation?: StatusUsuario = undefined;
+    idUsuarioNavigation?: Usuario = undefined;
     candidatura?: Candidatura[] = [];
     habilidadeCandidato?: HabilidadeCandidato[] = [];
     matching?: Matching[] = [];

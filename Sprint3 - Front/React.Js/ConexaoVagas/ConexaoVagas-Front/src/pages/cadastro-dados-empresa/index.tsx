@@ -1,16 +1,19 @@
+/* eslint-disable eqeqeq */
 import React, { useEffect, useState } from 'react';
-import { Link, useHistory, useLocation } from 'react-router-dom';
 import ButtonForm from '../../components/buttonForm';
 import Input from '../../components/input';
 import Senai from '../../assets/imgs/logo-senai-principal.png';
 import Logo from '../../assets/imgs/logo-dark.png';
 import Button from '../../components/button';
-
 import EmpresaApi from '../../api/empresa';
 import NotificacaoApi from '../../api/notificacoes';
 import { Empresa } from '../../models/empresa';
+import { Link, useHistory, useLocation } from 'react-router-dom';
+import { useAlert } from 'react-alert';
 
 function CadastroDadosEmpresa() {
+
+    const alert = useAlert();
 
     const [empresa, setEmpresa] = useState<Empresa>(new Empresa());
 
@@ -25,13 +28,13 @@ function CadastroDadosEmpresa() {
         if (empresa != undefined) {
             EmpresaApi.salvar(empresa, 0).then(data => {
                 if (data != null || data != undefined) {
-                    alert("Cadastrado com sucesso.")
+                    alert.success("Cadastrado com sucesso.")
                     history.push("/login")
                     NotificacaoApi.addNotificacao(`Empresa ${empresa.nomeFantasia} se cadastrou.`)
                 }
             });
         } else {
-            alert('Campos não preenchidos.')
+            alert.error("Campos não preenchidos.")
         }
     }
 
@@ -55,12 +58,12 @@ function CadastroDadosEmpresa() {
                         salvar()
                     }}>
                         <div className="flex flex-col justify-between mt-8">
-                            <Input type="name" name="NomeFicticio" label="Nome ficticio:" placeholder="Olx" 
+                            <Input mask="" type="name" name="NomeFicticio" label="Nome ficticio:" placeholder="Olx"
                                 className="input" required
                                 onChange={e => setEmpresa({ ...empresa, nomeFantasia: e.target.value })}
                                 value={empresa?.nomeFantasia!}></Input>
 
-                            <Input type="name" name="RazaoSocial" label="Razão social:" placeholder="bom negócio atividades de internet" 
+                            <Input mask="" type="name" name="RazaoSocial" label="Razão social:" placeholder="bom negócio atividades de internet"
                                 className="input mt-2" required
                                 onChange={e => setEmpresa({ ...empresa, razaoSocial: e.target.value })}
                                 value={empresa.razaoSocial}></Input>
@@ -77,33 +80,33 @@ function CadastroDadosEmpresa() {
                             </div>
 
                             <div className="flex justify-between mt-2">
-                                <Input type="number" name="Cnpj" label="CNPJ:" placeholder="12.345.678/0009-12" className="input"
+                                <Input mask="99.999.999/9999-99" name="Cnpj" label="CNPJ:" placeholder="12.345.678/0009-12" className="input"
                                     onChange={e => setEmpresa({ ...empresa, cnpj: e.target.value })}
                                     value={empresa.cnpj}></Input>
 
-                                <Input type="number" name="CNAE" label="CNAE:" placeholder="2543-8" className="input ml-2"
+                                <Input mask="9999-9" name="CNAE" label="CNAE:" placeholder="2543-8" className="input ml-2"
                                     onChange={e => setEmpresa({ ...empresa, cnae: e.target.value })}
                                     value={empresa.cnae}></Input>
                             </div>
 
                             <div className="flex justify-between mt-2">
-                                <Input type="text" name="cep" label="CEP:" placeholder="Av. Paulista" className="input" required
+                                <Input mask="99999-999" type="text" name="cep" label="CEP:" placeholder="Av. Paulista" className="input" required
                                     onChange={e => setEmpresa({ ...empresa, idEnderecoNavigation: { cep: e.target.value } })}
                                     value={empresa.idEnderecoNavigation?.cep}></Input>
                             </div>
 
                             <div className="flex justify-between mt-2">
-                                <Input type="tel" name="Telefone" label="Telefone:" placeholder="(11)22222-222" className="input" required
+                                <Input mask="(99)99999-9999" type="tel" name="Telefone" label="Telefone:" placeholder="(11)22222-222" className="input" required
                                     onChange={e => setEmpresa({ ...empresa, telefoneEmpresa: e.target.value })}
                                     value={empresa.telefoneEmpresa}></Input>
 
-                                <Input type="tel" name="Celular" label="Celular:" placeholder="(11)99999-9999" className="input ml-2" required
+                                <Input mask="(99)99999-9999" type="tel" name="Celular" label="Celular:" placeholder="(11)99999-9999" className="input ml-2" required
                                     onChange={e => setEmpresa({ ...empresa, celularEmpresa: e.target.value })}
                                     value={empresa.celularEmpresa}></Input>
                             </div>
 
                             <div className="flex justify-between">
-                                <Link to="/cadastro"><Button>Voltar</Button></Link>
+                                <Link to="/cadastro"><Button name="Voltar" ghost={true}>Voltar</Button></Link>
                                 <ButtonForm className=" mt-6" name="Login"></ButtonForm>
                             </div>
 

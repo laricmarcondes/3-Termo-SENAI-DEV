@@ -1,14 +1,13 @@
   
-.ButtonAreaForm{
+.button-normal-form{
     background-color: #CD322B;
     color: #ffffff;
-    border-radius: 5px;
     padding: 0.5em 2em 0.5em 2em;
+    font-weight: 500;
+    border-radius: 5px;
     border: none;
     border-style: none;
 } 
-.ButtonAreaForm:hover{
+.button-normal-form:hover{
     background-color: #b93129;
-    border: none;
-    border-style: none;
 }

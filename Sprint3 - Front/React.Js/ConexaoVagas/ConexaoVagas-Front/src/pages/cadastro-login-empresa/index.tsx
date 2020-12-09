@@ -1,3 +1,4 @@
+/* eslint-disable eqeqeq */
 import React, { useState } from 'react';
 import Logo from '../../assets/imgs/logo-dark.png';
 import Input from '../../components/input'
@@ -5,10 +6,11 @@ import Senai from '../../assets/imgs/logo-senai-principal.png';
 import ButtonForm from '../../components/buttonForm';
 import { Link, useHistory } from 'react-router-dom';
 import { API_URL } from '../../api/apisettings';
-
-
+import { useAlert } from 'react-alert';
 
 function CadastroEmpresa() {
+
+    const alert = useAlert();
 
     var history = useHistory();
 
@@ -32,9 +34,9 @@ function CadastroEmpresa() {
             .then(response => response.json())
             .then(dados => {
                 if (dados.email == API_URL) {
-                    alert("Cadastrado com Sucesso!")
+                    alert.success("Cadastrado com Sucesso.")
                 } else {
-                    alert("E-mail existente")
+                    alert.error("E-mail existente.")
                 }
             })
             .catch(error => console.error(error))
@@ -51,7 +53,7 @@ function CadastroEmpresa() {
             )
         } else {
             return (
-                alert("Senha ou E-mail inválido, por favor digite novamente!")
+                alert.error("Senha ou E-mail inválido, por favor digite novamente.")
             )
         }
     }
@@ -77,17 +79,17 @@ function CadastroEmpresa() {
                         cadastro()
                         validarSenha()
                     }}>
-                        <Input type="text" name="Email" label="Insira seu email:" placeholder="email@email.com" className="input mt-16"
-                            onChange={e => setEmail(e.target.value)} 
-                            value={email}/>
+                        <Input mask="" type="text" name="Email" label="Insira seu email:" placeholder="email@email.com" className="input mt-16"
+                            onChange={e => setEmail(e.target.value)}
+                            value={email} />
 
                         <div className="flex justify-between">
-                            <Input type="password" name="Senha" label="Insira sua senha:" placeholder="*******" className="input flex-1 mr-5 mt-5"
+                            <Input mask="" type="password" name="Senha" label="Insira sua senha:" placeholder="*******" className="input flex-1 mr-5 mt-5"
                                 onChange={e => setSenha(e.target.value)}
                                 value={senha} />
-                            <Input type="password" name="Senha" label="Confirme sua senha:" placeholder="*******" className="input flex-1 mt-5"
-                                onChange={e => setSenhaConfirmacao(e.target.value)} 
-                                value={senhaConfirmacao}/>
+                            <Input mask="" type="password" name="Senha" label="Confirme sua senha:" placeholder="*******" className="input flex-1 mt-5"
+                                onChange={e => setSenhaConfirmacao(e.target.value)}
+                                value={senhaConfirmacao} />
                         </div>
 
                         <div className="flex justify-end">

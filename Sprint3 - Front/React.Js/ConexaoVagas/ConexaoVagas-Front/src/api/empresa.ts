@@ -1,3 +1,4 @@
+/* eslint-disable eqeqeq */
 import { Empresa } from "../models/empresa";
 import { API_URL, handleErrors, TOKEN_KEY } from "./apisettings";
 
@@ -92,18 +93,52 @@ function salvar(empresa: Empresa, id: number): Promise<Empresa> {
         })
         .catch(err => console.error(err));
 }
+/**
+ * 
+ * @param id ID da Empresa
+ * @param file Foto
+ */
+function uploadFoto(id: number, file: Blob) {
+
+    var img = new FormData();
+    img.append("file", file, id.toString());
+
+    return fetch(API_URL + CONTROLLER + "Img/upload/" + id, {
+        method: "POST",
+        body: img,
+        headers: {
+            'Accept': '*/*',
+            authorization: 'Bearer ' + localStorage.getItem(TOKEN_KEY)
+        }
+    })
+        .then(handleErrors)
+        .then(() => id)
+        .catch(err => console.error(err));
+}
+
 
 function mudarStatus(id: number, idStatus: number): void {
 
     fetch(API_URL + CONTROLLER + `Status?id=${id}&idStatus=${idStatus}`, {
-    method: "PUT",
-    headers: {
-        'content-type': 'application/json',
-        authorization: 'Bearer ' + localStorage.getItem(TOKEN_KEY)
-    }
-})
-    .then(handleErrors)
-    .catch(err => console.error(err));
+        method: "PUT",
+        headers: {
+            'content-type': 'application/json',
+            authorization: 'Bearer ' + localStorage.getItem(TOKEN_KEY)
+        }
+    })
+        .then(handleErrors)
+        .catch(err => console.error(err));
 }
 
-export default {listar,listarPorStatus, buscarPorId, salvar, mudarStatus}
+function somaVisualizacao(id: number) {
+    
+    var empresa = new Empresa();
+
+    buscarPorId(id).then(data => {
+        empresa.visualizacao = data.visualizacao! + 1;
+        
+        salvar(empresa, id) 
+    });
+}
+
+export default { listar, listarPorStatus, buscarPorId, salvar, uploadFoto, mudarStatus , somaVisualizacao}

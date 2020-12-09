@@ -75,4 +75,4 @@ function deletar(): void {
         .catch(err => console.error(err));
 }
 
-export default {listar, buscarAutorizado, buscarPorEmail, deletar}
+export default { listar, buscarAutorizado, buscarPorEmail, deletar }

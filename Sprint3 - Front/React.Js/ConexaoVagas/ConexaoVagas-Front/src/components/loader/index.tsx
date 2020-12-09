@@ -1,9 +1,9 @@
-import React, {InputHTMLAttributes} from 'react';
+import React from 'react';
 import '../../components/loader/style.css';
 
 function Loader(props: any) {
     return (
-        <div className={"loader ease-linear rounded-full border-8 border-t-8 border-gray-300 h-20 w-20 " + props.className}></div>
+        <div className={"loader w-12 h-12 " + props.className}></div>
     )
 }
 

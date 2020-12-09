@@ -1,10 +1,11 @@
+/* eslint-disable eqeqeq */
 import { Candidatura } from "../models/candidatura";
 import { ChartCandidaturas } from "../interfaces/chartCandidaturas";
 import { Empresa } from "../models/empresa";
 import { ChartEmpresas } from "../interfaces/chartEmpresas";
+import { Vaga } from "../models/vaga";
 import EmpresaApi from '../api/empresa';
 import CandidaturaApi from '../api/candidatura';
-import { Vaga } from "../models/vaga";
 
 // Define uma lista de meses para ser exportado depois em qualquer parte da aplicação.
 export const MESES = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
@@ -120,11 +121,11 @@ export function graphCandidaturaEmpresa(qtdeMeses: number, empresa: Empresa): Ch
     // Inicializa a lista de candidaturas cadastradas no mês para ter conteudo adicionado depois (push).
     var chartCandidatura: ChartCandidaturas[] = [];
 
-    
+
     for (let i = 0; i < qtdeMeses; i++) {
-        
+
         var candidaturasFiltradas: Candidatura[] = [];
-        
+
         empresa.vaga?.forEach((vaga: Vaga) => {
             // Soma todas candidaturas filtradas em um array.
             candidaturasFiltradas = candidaturasFiltradas.concat(vaga.candidatura!.filter((candidatura: Candidatura) => {
@@ -136,7 +137,7 @@ export function graphCandidaturaEmpresa(qtdeMeses: number, empresa: Empresa): Ch
             }))
 
         })
-        
+
         chartCandidatura?.push({
             candidaturas: candidaturasFiltradas?.length,
             mes: `${MESES[mesAtual]}/${anoAtual}`,

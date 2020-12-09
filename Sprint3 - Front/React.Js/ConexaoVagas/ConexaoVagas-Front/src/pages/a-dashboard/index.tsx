@@ -5,12 +5,15 @@ import EmpresaApi from '../../api/empresa';
 import VagaApi from '../../api/vagas';
 import CandidaturaApi from '../../api/candidatura';
 import NotificacaoApi from '../../api/notificacoes';
+import Loader from '../../components/loader';
+import Hamburguer from '../../components/hamburguer';
 import { graphEmpresa } from '../../services/graph';
 import { graphCandidatura } from '../../services/graph';
 import { Line } from '@reactchartjs/react-chart.js';
 import { Notificacao } from '../../models/notificacao';
-import Loader from '../../components/loader';
-import Hamburguer from '../../components/hamburguer';
+import { toDate, toHour } from '../../services/date';
+import LoadingPage from '../loading';
+import notificacoes from '../../api/notificacoes';
 
 function ADashboard() {
 
@@ -25,40 +28,43 @@ function ADashboard() {
   const [chartCandidaturasCadastros, setChartCandidaturasCadastros] = useState<number[]>([]);
 
   const [Notificacoes, setNotificacoes] = useState<Notificacao[]>();
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    EmpresaApi.listar().then(data => setQtdEmpresas(data?.length));
+    Promise.all([
+      EmpresaApi.listar().then(data => setQtdEmpresas(data?.length)),
+      VagaApi.listar().then(data => setQtdVagas(data?.length)),
+      graphEmpresa(12).then(data => {
+        var joinedMeses: string[] = [];
+        var joinedCadastros: number[] = []
+        data.map(chart => {
+          // Se você especificou como 3 no valor de qtdeMeses e você 
+          // estiver no mês de Novembro, vai retornar um array ["Setembro", "Outubro", "Novembro"]
+          joinedMeses.push(chart.mes);
+          joinedCadastros.push(chart.empresas);
+        });
 
-    VagaApi.listar().then(data => setQtdVagas(data?.length));
-    graphEmpresa(12).then(data => {
-      var joinedMeses: string[] = [];
-      var joinedCadastros: number[] = []
-      data.map(chart => {
-        // Se você especificou como 3 no valor de qtdeMeses e você 
-        // estiver no mês de Novembro, vai retornar um array ["Setembro", "Outubro", "Novembro"]
-        joinedMeses.push(chart.mes);
-        joinedCadastros.push(chart.empresas);
-      });
+        setChartEmpresasMeses(joinedMeses);
+        setChartEmpresasCadastros(joinedCadastros)
+      })
+      ,
+      CandidaturaApi.listar().then(data => setQtdCandidaturas(data?.length)),
+      graphCandidatura(12).then(data => {
+        var joinedMeses: string[] = [];
+        var joinedCadastros: number[] = [];
+        data.map(chart => {
+          // Se você especificou como 3 no valor de qtdeMeses e você 
+          // estiver no mês de Novembro, vai retornar um array ["Setembro", "Outubro", "Novembro"]
+          joinedMeses.push(chart.mes);
+          joinedCadastros.push(chart.candidaturas);
+        });
+        setChartCandidaturasMeses(joinedMeses);
+        setChartCandidaturasCadastros(joinedCadastros)
+      }),
 
-      setChartEmpresasMeses(joinedMeses);
-      setChartEmpresasCadastros(joinedCadastros)
-    });
-
-    CandidaturaApi.listar().then(data => setQtdCandidaturas(data?.length));
-    graphCandidatura(12).then(data => {
-      var joinedMeses: string[] = [];
-      var joinedCadastros: number[] = [];
-      data.map(chart => {
-        // Se você especificou como 3 no valor de qtdeMeses e você 
-        // estiver no mês de Novembro, vai retornar um array ["Setembro", "Outubro", "Novembro"]
-        joinedMeses.push(chart.mes);
-        joinedCadastros.push(chart.candidaturas);
-      });
-      setChartCandidaturasMeses(joinedMeses);
-      setChartCandidaturasCadastros(joinedCadastros)
-    });
-
-    NotificacaoApi.listar().then(data => setNotificacoes(data.reverse()));
+      NotificacaoApi.listar().then(data => setNotificacoes(data.reverse()))
+    ])
+      .then(() => setIsLoading(false));
 
   }, []);
 
@@ -115,30 +121,32 @@ function ADashboard() {
   }
 
   function renderNotificacoes() {
-    // Enquanto notificacoes for vazio, 
-    // retorne uma mensagem de "Carregando..."
-    if (Notificacoes === undefined) return (
-      <Loader className="mx-auto m-5" />
-    )
 
-    return Notificacoes.map((item: Notificacao) => {
+    return Notificacoes!.map((item: Notificacao) => {
       return (
-        <div className="pb-4">
-          <Card key={item.idNotificacao}>
+        <div className="pb-4"  >
+          <div key={item.idNotificacao}>
             <p className="text-sm">{item.mensagem}</p>
-            <p className="text-xs text-gray-700">{item.dataNotificacao}</p>
-          </Card>
+            <p className="text-xs text-gray-700">{`${toDate(new Date(item.dataNotificacao!))} ${toHour(new Date(item.dataNotificacao!))}`}</p>
+            <hr className="mt-4" />
+          </div>
         </div>
       )
     })
   }
 
+  if (isLoading) {
+    return (
+      <LoadingPage />
+    )
+  }
+
   return (
     <div className="body w-full">
-      <Hamburguer className="md:hidden flex fixed"/>
+      <Hamburguer className="md:hidden flex fixed" />
       <Sidebar className="md:flex hidden"></Sidebar>
       <main className="md:w-2/3 w-full mx-auto p-5">
-      <h1 className="p-10 md:text-2xl text-xl flex justify-center">Dashboard</h1>
+        <h1 className="p-10 md:text-2xl text-xl flex justify-center">Dashboard</h1>
         <div className="flex md:flex-no-wrap flex-wrap gap-5 mb-2 justify-center">
           <Card className="flex flex-col p-2 w-full">
             <div className="flex justify-center pb-2">Total de empresas</div>
@@ -170,10 +178,10 @@ function ADashboard() {
             </Card>
           </div>
 
-          <Card className="lg:w-64 w-full">
+          <Card className="lg:w-64 w-full overflow-y-scroll h-screen">
             <div>
               <h2 className="flex justify-center pb-2">Notificações</h2>
-              <hr />
+              <hr className="mb-4" />
             </div>
             <div>
               {renderNotificacoes()}

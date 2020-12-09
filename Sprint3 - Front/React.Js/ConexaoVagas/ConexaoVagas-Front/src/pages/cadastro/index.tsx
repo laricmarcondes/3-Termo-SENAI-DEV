@@ -1,16 +1,17 @@
+/* eslint-disable eqeqeq */
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import ButtonForm from '../../components/buttonForm';
-import Input from '../../components/input';
 import Senai from '../../assets/imgs/logo-senai-principal.png';
 import Logo from '../../assets/imgs/logo-dark.png';
-import './index.css'
 import Button from '../../components/button';
+import './index.css';
+
 function Cadastro() {
 
     const [pagina, setPagina] = useState('');
-    let history = useHistory();
 
+    let history = useHistory();
 
     function mudarPagina() {
 
@@ -20,7 +21,6 @@ function Cadastro() {
         } else {
             history.push('/cadastro/candidato/passo-1')
         }
-        console.log(pagina)
     }
 
     return (
@@ -45,21 +45,21 @@ function Cadastro() {
                         <div className="flex justify-center">
 
                             <input type="radio" name="tipo" id="empresa" className="escolha hidden"
-                                     onChange={() => setPagina("false")} />
+                                onChange={() => setPagina("false")} />
                             <label htmlFor="empresa" className="escolha w-40 flex justify-center items-center cursor-pointer" >Criar vagas</label>
 
                             <input type="radio" name="tipo" id="candidato" className="escolha hidden"
-                                    onChange={() => setPagina("true")} />
+                                onChange={() => setPagina("true")} />
 
                             <label htmlFor="candidato"
-                                   className="escolha m-0 w-40 p-2 pl-8 leading-5 cursor-pointer ml-2">Arrumar um emprego</label>
+                                className="escolha m-0 w-40 p-2 pl-8 leading-5 cursor-pointer ml-2">Arrumar um emprego</label>
 
                         </div>
                         <div className="flex justify-center mt-8">
 
-                            <Link to="/"><Button>Voltar</Button></Link>
-                            <ButtonForm  name="Login" className="ml-5"
-                                onClick={() => mudarPagina()}/>
+                            <Link to="/"><Button name="Voltar" ghost={true}>Voltar</Button></Link>
+                            <ButtonForm name="Login" className="ml-5"
+                                onClick={() => mudarPagina()} />
                         </div>
 
 

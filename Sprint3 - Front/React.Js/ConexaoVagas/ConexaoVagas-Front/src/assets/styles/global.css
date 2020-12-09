@@ -49,3 +49,95 @@
     right:0;
     top:0;
 }
+
+.force-text-center {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%)
+}
+
+.hover-gray-100:hover {
+    background-color: rgba(0, 0, 0, 0.03);
+    cursor: pointer;
+}
+.hover-gray-200:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+}
+.hover-gray-300:hover {
+    background-color: rgba(0, 0, 0, 0.075);
+    cursor: pointer;
+}
+.hover-gray-300:hover {
+    background-color: rgba(0, 0, 0, 0.10);
+    cursor: pointer;
+}
+
+.text-link {
+    color:#1A0DAB;
+}
+
+.text-link:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+/* Salvar e editar input */
+.check-edit:checked ~ div{
+    display:block;
+}
+
+.check-edit:checked ~ p{
+    display:none;
+}
+
+.check-edit ~ div{
+    display:none;
+}
+
+.check-edit ~ p{
+    display:block;
+}
+
+.check-edit:checked ~ .input-editar {
+    display:none;
+}
+
+.check-edit ~ .input-editar {
+    display:block;
+}
+
+.check-edit:checked ~ .input-salvar {
+    display:block;
+}
+
+.check-edit ~ .input-salvar {
+    display:none;
+}
+
+.input-container {
+    display: flex;
+    align-items:center;
+}
+
+.input-container > label {
+    cursor: pointer;
+    transition:0.1ms;
+}
+
+.input-container > label:hover {
+    color: rgb(92, 92, 92);
+    transition:0.1ms;
+}
+
+.input-container > label > i {
+    font-size:1.25em;
+}
+
+.input-container > label > * {
+    vertical-align: middle;
+    cursor: pointer;
+}

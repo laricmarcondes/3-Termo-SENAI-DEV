@@ -66,4 +66,4 @@ function salvar(candidatura: Candidatura, id: number): Promise<Candidatura> {
         .catch(err => console.error(err));
 }
 
-export default {listar, buscarPorId, salvar}
+export default { listar, buscarPorId, salvar }

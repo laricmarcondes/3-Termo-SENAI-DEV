@@ -121,4 +121,15 @@ function deletar(id: number): void {
         .catch(err => console.error(err));
 }
 
-export default {listar, listarPorEmpresa, listarPorFiltro, buscarPorId, salvar, deletar}
+function somaVisualizacao(id: number) {
+    
+    var vaga = new Vaga();
+
+    buscarPorId(id).then(data => {
+        vaga.visualizacao = data.visualizacao! + 1;
+        
+        salvar(vaga, id) 
+    });
+}
+
+export default {listar, listarPorEmpresa, listarPorFiltro, buscarPorId, salvar, deletar, somaVisualizacao}
