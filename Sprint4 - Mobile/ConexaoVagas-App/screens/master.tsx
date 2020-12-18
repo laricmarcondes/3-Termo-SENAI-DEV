@@ -94,11 +94,8 @@ export default function Master() {
                 <Drawer.Screen name="Home" component={CHome} />
             )}
             {token?.Role == TipoUsuario.EMPRESA && (
-                <>
-                    <Drawer.Screen name="Home" component={EHome} />
-                </>
+                <Drawer.Screen name="Home" component={EHome} />
             )}
-            {/* <Drawer.Screen name="Home" component={EHome} /> */}
 
         </Drawer.Navigator>
     )

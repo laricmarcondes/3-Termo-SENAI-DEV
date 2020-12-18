@@ -36,10 +36,12 @@ export default function EMinhasVagas() {
 
     useEffect(() => {
         Jwt().then(token => {
-            VagaApi.listarPorEmpresa(token.jti).then(data => setVagas(data));
-            HabilidadeApi.listar().then(data => setHabilidades(data));
+            Promise.all([
+                VagaApi.listarPorEmpresa(token.jti).then(data => setVagas(data)),
+                HabilidadeApi.listar().then(data => setHabilidades(data))
+            ])
+            .then(() => setIsLoading(false))
         })
-        .then(() => setIsLoading(false))
     }, [])
 
     function filtrarVagas() {
@@ -56,7 +58,7 @@ export default function EMinhasVagas() {
             <FlatList
                 data={vagas}
                 keyExtractor={item => item.idVaga!.toString()}
-                ListHeaderComponent={(<Text style={tailwind("text-center text-xl mt-4 mb-6")}>Vagas</Text>)}
+                ListHeaderComponent={(<Text style={tailwind("text-center text-xl mt-4 mb-6")}>Minhas Vagas</Text>)}
                 renderItem={({ item }) => (
                     <TouchableNativeFeedback onPress={() => {
                         navigation.navigate("Candidaturas", {

@@ -10,8 +10,6 @@ import LoadingScreen from '../components/loadingscreen';
 export default function Inicial() {
     const navigation = useNavigation();
 
-    
-
     useEffect(() => {
         usuarioAutenticado().then(logado => {
             if (logado) {
@@ -33,7 +31,7 @@ export default function Inicial() {
                 <View style={tailwind("text-center text-xl mt-4 mb-6")}>
                     <Text style={styles.jumbotronText}>Sua conexão</Text>
                     <Text style={styles.jumbotronText}>com as empresas</Text>
-                    <Text style={styles.jumbotronText}>começa agora</Text>
+                    <Text style={styles.jumbotronText}>começam agora</Text>
                     <View style={styles.Vbotao}>
                         <Button
                             title='Login'

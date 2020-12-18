@@ -7,6 +7,7 @@ import { Color } from '../styles/global';
 import tailwind from 'tailwind-rn';
 import EMinhasVagas from './e-minhas-vagas';
 import EVagaCandidaturas from './e-vaga-candidaturas';
+import CandidatoPublico from './candidato-publico';
 
 const Tab = createMaterialTopTabNavigator();
 const Stack = createStackNavigator();
@@ -29,7 +30,7 @@ export default function EHome({ navigation }: any) {
     return (
         <Stack.Navigator>
             <Stack.Screen
-                name="Minhas Vagas"
+                name="Home"
                 component={EMinhasVagas}
                 options={{
                     headerStyle: { backgroundColor: Color.SECONDARY },
@@ -45,6 +46,15 @@ export default function EHome({ navigation }: any) {
             <Stack.Screen
                 name="Candidaturas"
                 component={EVagaCandidaturas}
+                options={{
+                    headerStyle: { backgroundColor: Color.SECONDARY },
+                    headerTintColor: Color.TINT,
+                    headerTitleStyle: { fontFamily: "Roboto" },
+                }}
+            />
+            <Stack.Screen
+                name="Detalhes do Candidato"
+                component={CandidatoPublico}
                 options={{
                     headerStyle: { backgroundColor: Color.SECONDARY },
                     headerTintColor: Color.TINT,
